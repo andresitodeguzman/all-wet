@@ -6,19 +6,9 @@ require_once("../_system/config.php");
 
 $account = new Account();
 
-if($account->isLoggedIn()) header("Location: ../");
+if($account->isLoggedIn() == True){
+  header("Location: ../app");
+} else {
+  header("Location: http://developer.globelabs.com.ph/dialog/oauth?app_id=xxqjsRBXAzhMoT6k6ziXMKh75xXrskMG");
+}
 ?>
-<!Doctype html>
-<html>
-  <head>
-    <title>Authenticate - <?php echo $site_title ?></title>
-    <?php
-      require_once("../_system/styles.php");  
-    ?>
-  </head>
-  <body>
-    <h1>
-      Hello World
-    </h1>
-  </body>
-</html>
