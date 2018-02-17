@@ -25,6 +25,9 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
         body{
             height:100%;
         }
+        .btn-block {
+            width:100%;
+        }
     </style>
 </head>
 <body class="blue darken-2">
@@ -32,16 +35,28 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
     <div class="activity col s12" id="locationLoader">
         <div class="container">
             <br><br><br>
-            <h4 class="white-text">Still Loading Your Location</h4>
+            <h3 class="white-text">Wait! We're Still<br>Getting Your Location</h3>
         </div>
     </div>
 
     <div class="activity col s12 blue darken-2" id="location">
         <div class="container">
             <br><br><br>
-            <h3 id="loc" class="white-text"></h3>
+            <div id="locResult"></div>
+            <br><br>
+            <a id="acceptLocation" href="#" class="btn btn-large waves-effect waves-light green darken-2 btn-block">Yes! Certainly</a><br>
+            <br>
+            <a href="#" class="btn btn-large waves-effect waves-light red  btn-block">No, I'll just enter it instead</a><br><br><br><br>
         </div>
     </div>
+
+    <div class="activity col s12 blue darken-2" id="itemList">
+        <div class="container">
+            <br><br>
+            <h3 class="white-text">What do you want to order?</h3>
+        </div>
+    </div>
+
 </body>
 </html>
 <script>
@@ -51,16 +66,26 @@ $(document).ready(()=>{
     init();
 });
 
+$("#acceptLocation").click(()=>{
+    $("#location").hide();
+    $("#itemList").fadeIn();
+});
+
 function setInitialLocation(){
     var lat = sessionStorage.getItem("latitude");
     var lon = sessionStorage.getItem("longitude");
     var adr = sessionStorage.getItem("formatted_address");
+    var eAdr = encodeURI(adr);
     var showThis = `
-        Are you at ${adr}?
+        <h3 id="loc" class="white-text">
+            Are you at ${adr}?
+        </h3>
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center=${lat},${lon}&zoom=20&size=800x300&markers=color:blue%7C${lat},${lon}&key=AIzaSyCuNfQSkwl85bk38k4de_QR-DwBGL-069o" width="100%"><br><br>
+
     `;
-    $("#loc").html(showThis);
+    $("#locResult").html(showThis);
     $("#locationLoader").hide();
-    $("#location").show();
+    $("#location").fadeIn();
 }
 
 function init(){
