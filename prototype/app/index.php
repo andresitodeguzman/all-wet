@@ -48,29 +48,32 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
                 </div>
                 <a href="app/profile.php">
                     <span class="white-text name">
-                        <b>All Well Customer</b>
+                        <b>All Wet Customer</b>
                     </span>
                 </a>
-                <a href="app/profile.php">
+                <a href="/app">
                     <span class="white-text email">
                         <?=$subscriber_number?>
                     </span>
                 </a>
             </div>
         </li>
-        <li><a href="/authentication/logout.php">Log-out</a></li>
+        <li><a href="/app/order.php"><i class="material-icons">add</i> Order</a></li>
+        <li><a href="/app"><i class="material-icons">list</i> My Order</a></li>
+        <li><a href="/authentication/logout.php"><i class="material-icons">person</i> Log-out</a></li>
     </ul>
 
     <div class="container">
-        <br><br>
         <h3 class="blue-text text-darken-2">
-            My Orders
+            My Order
         </h3>
-        <div class="card">
-            <div class="card-content">
-                Sample Content
-            </div>
-        </div>
+        <center>
+            <br><br>
+            <h5 class="grey-text">
+                <b>No Order Yet</b><br>
+                Tap the + to start a transaction
+            </h5>
+        </center>
     </div>
 
     <div class="fixed-action-btn">

@@ -36,7 +36,7 @@ $isLoggedIn = $account->isLoggedIn();
         <b>All Wet</b>
       </h2>
       <h5 class="white-text">
-        Purified Drinking Water
+        Purified Drinking <a href="/manage" class="white-text">Water</a>
       </h5>
       <br><br><br>
       <?php
@@ -48,8 +48,8 @@ $isLoggedIn = $account->isLoggedIn();
           ";
         } else {
           echo "
-            <a class='btn btn-large blue darken-2 waves-effect waves-light' href='authentication'>
-              Sign-In with your Phone
+            <a class='btn btn-large blue darken-4 waves-effect waves-light' href='authentication'>
+              Sign-In with your Mobile Number
             </a>
           ";
         }
@@ -61,5 +61,7 @@ $isLoggedIn = $account->isLoggedIn();
 <script>
   $(document).ready(()=>{
     $('.parallax').parallax();
+    $(".btn").hide();
+    $(".btn").fadeIn();
   });
 </script>
