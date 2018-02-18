@@ -221,7 +221,7 @@
 						<div class="card-content">
 							<h4 class="blue-grey-text text-darken-2">27</h4>
 							<p>
-								New Cuustomers This Month
+								New Customers This Month
 							</p>
 						</div>
 					</div>
@@ -236,6 +236,7 @@
 </html>
 <script type="text/javascript">
 	$(document).ready(()=>{
+		$("meta[name='theme-color']").attr("content", "#37474f");
 		$('.sidenav').sidenav();
 		clear();
 		$("#orders").fadeIn();

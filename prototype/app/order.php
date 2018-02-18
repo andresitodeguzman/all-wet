@@ -127,7 +127,7 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
             <h4 class="white-text">Rundown</h4>
             <div id="orders"></div> 
             <br><br>
-            <h3 id="totalPrice" class="white-text"></h3> <span id="totalCount"></span>
+            <h3 class="white-text"><span id="totalPrice"></span><span id="totalCount"></span></h3>
             <br><br>
             <a class="btn btn-large btn-block blue darken-4 waves-effect waves-light" id="proceedCheckout">Place Order</a>
 
@@ -256,7 +256,6 @@ function sendSMSCheckout(){
             message: construct
         },
         success: result=>{
-            alert(result);
             window.location.replace("/app");
         }
     }).fail(()=>{
