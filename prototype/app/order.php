@@ -97,7 +97,7 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
                             <p>Perfect for outings and small houses without dispenser.</p>
                         </div>
                         <div class="card-action">
-                            <a class="blue-text text-darken-3" onclick="addToOrder('3 Gallons (with Faucet)','20.00')">
+                            <a class="blue-text text-darken-3" href="#" onclick="addToOrder('3 Gallons (with Faucet)','20.00')">
                                 Order
                             </a>
                         </div>
@@ -116,7 +116,7 @@ if($subscriber_number[0] == 9) $subscriber_number = "0$subscriber_number";
                             <p>The best choice for offices and homes with water dispenser.</p>
                         </div>
                         <div class="card-action">
-                            <a class="blue-text text-darken-3" onclick="addToOrder('10 Gallons','30.00')">
+                            <a class="blue-text text-darken-3" href="#" onclick="addToOrder('10 Gallons','30.00')">
                                 Order
                             </a>
                         </div>
