@@ -62,7 +62,7 @@ if('serviceWorker' in navigator){
 
 <!--javascript -->
 <script
-  src="http://code.jquery.com/jquery-3.2.1.min.js"
+  src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
   crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-alpha.3/js/materialize.min.js"></script>
