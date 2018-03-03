@@ -6,6 +6,12 @@
  * Keys
  */
 
+// DB
+$sql_host = "";
+$sql_username = "";
+$sql_password = "";
+$sql_database = "";
+
 // Globe
 $glb_app_id = "";
 $glb_app_secret = "";
