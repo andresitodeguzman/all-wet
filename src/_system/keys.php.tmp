@@ -1,0 +1,15 @@
+<?php
+/**
+ * All Wet
+ * 2018
+ * 
+ * Keys
+ */
+
+// Globe
+$glb_app_id = "";
+$glb_app_secret = "";
+$glb_sender_address = "";
+
+// Place all additional keys here
+?>

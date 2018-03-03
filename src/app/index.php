@@ -1,10 +1,11 @@
 <?php
-/*
-All Wet 
-2018
-
-App Shell
-*/
+/**
+ * All Wet
+ * 2018
+ * 
+ * App
+ * Index
+ */
 
 require_once("../_system/config.php");
 

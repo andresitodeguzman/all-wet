@@ -1,10 +1,10 @@
 <?php
-/*
-All Wet
-2018
-
-Config File
-*/
+/**
+ * All Wet
+ * 2018
+ * 
+ * Config
+ */
 
 $app_name = "";
 $app_description = "";

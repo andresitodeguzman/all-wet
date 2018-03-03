@@ -12,14 +12,10 @@ This system that would be built aims to improve the workflow and transaction pro
 To be added
 
 ## Project Information
-Created on First week of Februray 2018 by Andresito de Guzman and Kevin Mendoza at De La Salle University - Dasmarinas, Philippines as a requirement for Software Engineering Class 2nd Semester of School Year 2017-2018.
-
 Timeline
 - 2/9/2018 - GitHub Repository was created
-- 
+- 2/21/2018 - Prototype presented in Class
+- 3/2/2018 - Start of Development
 
 ## Repository Information
 This repository is created to serve as a backup repository and reference for future projects. The software is provided without warranty.
-
-## Security Information and Issues
-This system's security should be upgraded before deploying in production. Care in user input through validation and sanitation among other security techniques like password hashing and salting was made to secure the site. These may not be enough as there were known security lapses like SQL injection, cannot be ruled out on time as the development was rushed. Preparing SQL queries must be made to ensure that the system would not be vulnerable.

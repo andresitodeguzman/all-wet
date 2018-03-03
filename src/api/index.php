@@ -3,8 +3,6 @@
  * All Wet
  * 2018
  * 
- * Index
+ * API
  */
-
-session_start();
 ?>
