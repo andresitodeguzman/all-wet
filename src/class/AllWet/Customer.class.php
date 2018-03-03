@@ -10,7 +10,10 @@
 namespace AllWet;
 
 class Customer {
+
     // Properties
+    private $mysqli;
+
     public $customer_id;
     public $customer_number;
     public $customer_name;

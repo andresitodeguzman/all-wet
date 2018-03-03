@@ -12,6 +12,8 @@ namespace AllWet;
 class Product {
 
     // Properties
+    private $mysqli;
+
     public $product_id;
     public $product_code;
     public $product_name;

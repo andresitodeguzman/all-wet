@@ -12,6 +12,8 @@ namespace AllWet;
 class Employee {
 
     // Properties
+    private $mysqli;
+
     public $employee_id;
     public $employee_name;
     public $employee_username;

@@ -12,6 +12,8 @@
  class Admin {
 
     // Properties
+    private $mysqli;
+
     public $admin_id;
     public $admin_name;
     public $admin_password;

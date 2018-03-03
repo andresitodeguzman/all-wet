@@ -12,6 +12,8 @@ namespace AllWet;
 class Transaction {
     
     // Properties
+    private $mysqli;
+
     public $transaction_id;
     public $transaction_date;
     public $transaction_time;
