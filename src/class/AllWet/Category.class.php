@@ -39,6 +39,7 @@
      * @return: Bool
      */
     private function codeExists($category_code){
+        // Handle Params
         $this->category_code = $category_code;
 
         // Query if Category Code already exists
@@ -127,14 +128,16 @@
         $this->category_description = $category_description;
         $this->category_code = $category_code;
         
+        // Check if code already exists
         if($this->codeExists($this->category_code)){
             return False;
         } else {
+            // Insert into DB
             $stmt = $this->mysqli->prepare("INSERT INTO `category`(category_name, category_description, category_code) VALUES (?,?,?)");
-
             $stmt->bind_param("sss",$this->category_name, $this->category_description, $this->category_code);
             $stmt->execute();
 
+            // Return true
             return True;
         }
     }
@@ -146,12 +149,15 @@
      * @return: Bool
      */
     public function delete($category_id){
+        // Handle Params
         $this->category_id = $category_id;
 
+        // Delete from DB
         $stmt = $this->mysqli->prepare("DELETE FROM `category` WHERE category_id = ?");
         $stmt->bind_param("s",$this->category_id);
         $stmt->execute();
 
+        // Check if deleted
         $stmt = $this->mysqli->prepare("SELECT category_id FROM `category` WHERE category_id = ? LIMIT 1");
         $stmt->bind_param("s",$this->category_id);
         $stmt->execute();
@@ -174,12 +180,16 @@
      * @return: Bool
      */
     public function update($category_id, String $category_name, String $category_description, String $category_code){
+        // Handle Params
         $this->category_id = $category_id;
         $this->category_name = $category_name;
         $this->category_description = $category_description;
         $this->category_code = $category_code;
 
+        // Check if Category Entry Exists
         if($this->get($this->category_id)){
+
+            // Update Entry
             $stmt = $this->mysqli->prepare("UPDATE `category` SET `category_name` = ?, `category_description` = ?, `category_code` = ? WHERE `category_id` = ?");
             $stmt->bind_param("ssss", $this->category_name, $this->category_description, $this->category_code, $this->category_id);
             $stmt->execute();
@@ -187,7 +197,9 @@
             return True;
 
         } else {
+
             return False;
+
         }
 
     }
