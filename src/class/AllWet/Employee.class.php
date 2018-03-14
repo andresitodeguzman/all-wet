@@ -201,6 +201,43 @@ class Employee {
         }
 
     }
+  
+  public function updateInfo($employee_id, String $employee_name, String $employee_image){
+    $this->employee_id = $employee_id;
+    $this->employee_name = $employee_name;
+    $this->employee_image = $employee_image;
+    
+    if($this->get($this->employee_id)){
+      $stmt = $this->mysqli->prepare("UPDATE `employee_name`=?, `employee_image`=? FROM `employee` WHERE `employee_id`=?");
+      $stmt->bind_param("sss", $this->employee_name, $this->employee_image, $this->employee_id);
+      $stmt->execute();
+      
+      $inf = $this->get($this->employee_id);
+      if($inf['employee_name'] === $this->employee_name){
+        return True;
+      } else {
+        return False;
+      }
+    } else {
+      return False;
+    }
+  }
+  
+  /*
+  public function updateUsername($employee_id, String $employee_username){
+    $this->employee_id = $employee_id;
+    $this->employee_username = $employee_username;
+
+    $inf = $this->get($this->employee_id);
+
+    if($inf){
+      if($this->)
+    } else {
+      return False;
+    }
+    
+  }
+  */
 
 }
 ?>
