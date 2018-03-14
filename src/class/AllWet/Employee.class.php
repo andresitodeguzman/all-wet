@@ -14,13 +14,13 @@ class Employee {
     // Properties
     private $mysqli;
 
-    public $employee_array;
+    private $employee_array;
 
-    public $employee_id;
-    public $employee_name;
-    public $employee_username;
-    public $employee_password;
-    public $employee_image;
+    private $employee_id;
+    private $employee_name;
+    private $employee_username;
+    private $employee_password;
+    private $employee_image;
 
     // Methods
 
@@ -39,7 +39,7 @@ class Employee {
      * @param: $employee_username
      * @return: Bool
      */
-    public function usernameExists($employee_username){
+    private function usernameExists($employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -62,7 +62,7 @@ class Employee {
      * @param: none
      * @return: Array
      */
-    public function getAll(){
+    private function getAll(){
         // Query in DB
         $stmt = $this->mysqli->prepare("SELECT `employee_id`, `employee_name`, `employee_username`, `employee_image` FROM `employee`");
         $stmt->execute();
@@ -99,7 +99,7 @@ class Employee {
      * @param: $employee_id
      * @return: Array
      */
-    public function get($employee_id){
+    private function get($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -120,7 +120,7 @@ class Employee {
      * @param: $employee_username
      * @return: Array
      */
-    public function getByUsername(String $employee_username){
+    private function getByUsername(String $employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -141,7 +141,7 @@ class Employee {
      * @param: $employee_id
      * @return: Bool
      */
-    public function delete($employee_id){
+    private function delete($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -171,7 +171,7 @@ class Employee {
      * @param: $employee_name, $employee_username, $employee_password, $employee_image
      * @return: Bool
      */
-    public function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
+    private function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
         // Handle Params
         $this->employee_name = $employee_name;
         $this->employee_username = $employee_username;
@@ -202,7 +202,7 @@ class Employee {
 
     }
   
-  public function updateInfo($employee_id, String $employee_name, String $employee_image){
+  private function updateInfo($employee_id, String $employee_name, String $employee_image){
     $this->employee_id = $employee_id;
     $this->employee_name = $employee_name;
     $this->employee_image = $employee_image;
@@ -222,22 +222,36 @@ class Employee {
       return False;
     }
   }
-  
-  /*
-  public function updateUsername($employee_id, String $employee_username){
+
+  private function updateUsername($employee_id, String $employee_username){
     $this->employee_id = $employee_id;
     $this->employee_username = $employee_username;
-
-    $inf = $this->get($this->employee_id);
-
-    if($inf){
-      if($this->)
-    } else {
-      return False;
-    }
     
+    $inf = $this->get($this->employee_username);
+    $current_username = $inf['employee_username'];
+    if($current_username == $this->employee_username){
+       return False;
+    } else {
+      $stmt = $this->mysqli->prepare("SELECT employee_id FROM `employee` WHERE employee_username = ? EXCEPT employee_id = `?` LIMIT 1");
+      $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
+      $stmt->execute();
+      $result = $stmt->get_result();
+      $result = $stmt->fetch_assoc();
+      if($result){
+        return "Username already in use";
+      } else {
+        $stmt = $this->mysqli->prepare("UPDATE `employee_username`=? FROM `employee` WHERE `employee_id`=?");
+        $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
+        $stmt->execute();
+        return True;
+      }
+    }
   }
-  */
+  
+  private function updatePassword($employee_id, String $employee_password, String $employee_new_password){
+    $this->employee_id = $employee_id;
+    $this->
+  }
 
 }
 ?>
