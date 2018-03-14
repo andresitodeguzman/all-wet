@@ -39,7 +39,7 @@ class Employee {
      * @param: $employee_username
      * @return: Bool
      */
-    private function usernameExists($employee_username){
+    final private function usernameExists($employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -62,7 +62,7 @@ class Employee {
      * @param: none
      * @return: Array
      */
-    private function getAll(){
+    final private function getAll(){
         // Query in DB
         $stmt = $this->mysqli->prepare("SELECT `employee_id`, `employee_name`, `employee_username`, `employee_image` FROM `employee`");
         $stmt->execute();
@@ -99,7 +99,7 @@ class Employee {
      * @param: $employee_id
      * @return: Array
      */
-    private function get($employee_id){
+    final private function get($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -120,7 +120,7 @@ class Employee {
      * @param: $employee_username
      * @return: Array
      */
-    private function getByUsername(String $employee_username){
+    final private function getByUsername(String $employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -141,7 +141,7 @@ class Employee {
      * @param: $employee_id
      * @return: Bool
      */
-    private function delete($employee_id){
+    final private function delete($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -171,7 +171,7 @@ class Employee {
      * @param: $employee_name, $employee_username, $employee_password, $employee_image
      * @return: Bool
      */
-    private function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
+    final private function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
         // Handle Params
         $this->employee_name = $employee_name;
         $this->employee_username = $employee_username;
@@ -202,7 +202,7 @@ class Employee {
 
     }
   
-  private function updateInfo($employee_id, String $employee_name, String $employee_image){
+  final private function updateInfo($employee_id, String $employee_name, String $employee_image){
     $this->employee_id = $employee_id;
     $this->employee_name = $employee_name;
     $this->employee_image = $employee_image;
@@ -223,7 +223,7 @@ class Employee {
     }
   }
 
-  private function updateUsername($employee_id, String $employee_username){
+  final private function updateUsername($employee_id, String $employee_username){
     $this->employee_id = $employee_id;
     $this->employee_username = $employee_username;
     
@@ -248,9 +248,35 @@ class Employee {
     }
   }
   
-  private function updatePassword($employee_id, String $employee_password, String $employee_new_password){
+  final private verifyPassword(String $employee_username, String $employee_password){
+    $this->employee_username = $employee_username;
+    $this->employee_password = $employee_password;
+    
+    $stmt = $this->mysqli->prepare("SELECT `employee_password` FROM `employee` WHERE `employee_username` = ? LIMIT 1");
+    $stmt->bind_param("s", $this->employee_password);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $result = $result->fetch_assoc();
+    
+    if(password_verify($this->employee_password, $result['employee_password'])){
+      return True;      
+    } else {
+      return False;
+    }
+  }
+  
+  final private function updatePassword($employee_id, String $employee_password, String $employee_new_password){
     $this->employee_id = $employee_id;
-    $this->
+    $this->employee_password = $employee_password;
+      if($this->verifyPassword($this->employee_password)){
+        $nw_pw = password_hash(employee_new_password, PASSWORD_DEFAULT);
+        $stmt = $this->mysqli->prepare("UPDATE `employee_password` = ? FROM `employee` WHERE `employee_id` = ?");
+        $stmt->bind_param("ss", $nw_pw, $this->employee_id);
+        $stmt->execute();
+        return True;
+      }  else {
+        return "Wrong Password";        
+      }   
   }
 
 }
