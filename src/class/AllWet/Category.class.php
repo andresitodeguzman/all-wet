@@ -122,7 +122,7 @@
      * @param: $category_name, $category_description, $category_code
      * @return: Bool
      */
-    final private add(String $category_name, String $category_description, String $category_code){
+    final private function add(String $category_name, String $category_description, String $category_code){
         // Handle Params
         $this->category_name = $category_name;
         $this->category_description = $category_description;
