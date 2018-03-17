@@ -137,6 +137,7 @@ class Product {
         $stmt->bind_param("s",$this->product_id);
         $stmt->execute();
 
+        
         $result = $stmt->get_result();
         $result = $result->fetch_assoc();
 

@@ -248,7 +248,7 @@ class Employee {
     }
   }
   
-  final private verifyPassword(String $employee_username, String $employee_password){
+  final private function verifyPassword(String $employee_username, String $employee_password){
     $this->employee_username = $employee_username;
     $this->employee_password = $employee_password;
     
