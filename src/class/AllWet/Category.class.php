@@ -119,15 +119,15 @@
 
     /**
      * add
-     * @param: $category_name, $category_description, $category_code
+     * @param: $c_array
      * @return: Bool
      */
-    final public function add(String $category_name, String $category_description, String $category_code){
+    final public function add(Array $c_array){
         // Handle Params
-        $this->category_name = $category_name;
-        $this->category_description = $category_description;
-        $this->category_code = $category_code;
-        
+        if($c_array['category_name']) $this->category_name = $c_array['category_name'];
+        if($c_array['category_description']) $this->category_description = $c_array['category_description'];
+        if($c_array['category_code']) $this->category_code = $c_array['category_code'];
+
         // Check if code already exists
         if($this->codeExists($this->category_code)){
             return False;
@@ -176,15 +176,15 @@
     /**
      * update
      * 
-     * @param: $category_id, $category_name, $category_description, $category_code
+     * @param: $c_array
      * @return: Bool
      */
-    final public function update($category_id, String $category_name, String $category_description, String $category_code){
+    final public function update(Array $c_array){
         // Handle Params
-        $this->category_id = $category_id;
-        $this->category_name = $category_name;
-        $this->category_description = $category_description;
-        $this->category_code = $category_code;
+        $this->category_id = $c_array['category_id'];
+        $this->category_name = $c_array['category_name'];
+        $this->category_description = $c_array['category_description'];
+        $this->category_code = $c_array['category_code'];
 
         // Check if Category Entry Exists
         if($this->get($this->category_id)){

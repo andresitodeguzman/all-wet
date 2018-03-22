@@ -168,15 +168,15 @@ class Employee {
     /**
      * add
      * 
-     * @param: $employee_name, $employee_username, $employee_password, $employee_image
+     * @param: $e_array
      * @return: Bool
      */
-    final public function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
+    final public function add(Array $e_array){
         // Handle Params
-        $this->employee_name = $employee_name;
-        $this->employee_username = $employee_username;
-        $this->employee_password = $employee_password;
-        $this->employee_image = $employee_image;
+        $this->employee_name = $e_array['employee_name'];
+        $this->employee_username = $e_array['employee_username'];
+        $this->employee_password = $e_array['employee_password'];
+        $this->employee_image = $e_array['employee_image'];
 
         // Check if username already exists
         if($this->usernameExists($this->employee_username)){
@@ -201,14 +201,20 @@ class Employee {
         }
 
     }
-  
-  final public function updateInfo($employee_id, String $employee_name, String $employee_image){
-    $this->employee_id = $employee_id;
-    $this->employee_name = $employee_name;
-    $this->employee_image = $employee_image;
+
+  /**
+   * update
+   * 
+   * @param: $e_array
+   * @return: Bool
+   */
+  final public function update(Array $e_array){
+    $this->employee_id = $e_array['employee_id'];
+    $this->employee_name = $e_array['employee_name'];
+    $this->employee_image = $e_array['employee_image'];
     
     if($this->get($this->employee_id)){
-      $stmt = $this->mysqli->prepare("UPDATE `employee_name`=?, `employee_image`=? FROM `employee` WHERE `employee_id`=?");
+      $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_name`=?, `employee_image`=? WHERE `employee_id`=?");
       $stmt->bind_param("sss", $this->employee_name, $this->employee_image, $this->employee_id);
       $stmt->execute();
       
@@ -223,6 +229,12 @@ class Employee {
     }
   }
 
+  /**
+   * updateUsername
+   * 
+   * @param: $employee_username
+   * @return: Bool
+   */
   final public function updateUsername($employee_id, String $employee_username){
     $this->employee_id = $employee_id;
     $this->employee_username = $employee_username;
@@ -240,14 +252,20 @@ class Employee {
       if($result){
         return "Username already in use";
       } else {
-        $stmt = $this->mysqli->prepare("UPDATE `employee_username`=? FROM `employee` WHERE `employee_id`=?");
+        $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_username`=? WHERE `employee_id`=?");
         $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
         $stmt->execute();
         return True;
       }
     }
   }
-  
+
+  /**
+   * verifyPassword
+   * 
+   * @param: $employee_username, $employee_password
+   * @return: Bool
+   */
   final public function verifyPassword(String $employee_username, String $employee_password){
     $this->employee_username = $employee_username;
     $this->employee_password = $employee_password;
@@ -264,13 +282,19 @@ class Employee {
       return False;
     }
   }
-  
+
+  /**
+   * updatePassword
+   * 
+   * @param: $employee_id, $employee_password, $employee_new_password
+   * @return: Bool
+   */
   final public function updatePassword($employee_id, String $employee_password, String $employee_new_password){
     $this->employee_id = $employee_id;
     $this->employee_password = $employee_password;
       if($this->verifyPassword($this->employee_password)){
         $nw_pw = password_hash(employee_new_password, PASSWORD_DEFAULT);
-        $stmt = $this->mysqli->prepare("UPDATE `employee_password` = ? FROM `employee` WHERE `employee_id` = ?");
+        $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_password` = ? WHERE `employee_id` = ?");
         $stmt->bind_param("ss", $nw_pw, $this->employee_id);
         $stmt->execute();
         return True;

@@ -41,24 +41,14 @@ require_once("_system/config.php");
 <script>
   $(document).ready(()=>{
     $('.parallax').parallax();
- 
+    
     setButton();
     $(".btn").hide();
     $(".btn").fadeIn();
   });
 
-  var checkLoginStatus = ()=>{
-      if(localStorage.getItem('all-wet-login')){
-          var login = localStorage.getItem('all-wet-login');
-          if(login == true){
-              return true;
-          } else {
-              return false;
-          }
-      } else {
-          localStorage.setItem("all-wet-login",false);
-          return false;
-      }
+  checkLoginStatus = ()=>{
+      return localStorage.getItem('all-wet-login');
   };
 
   var setButton = ()=>{
@@ -74,13 +64,13 @@ require_once("_system/config.php");
         <a class="btn btn-large blue darken-4 waves-effect waves-light" href="/app">
             Open App
         </a>`;
-        
 
-      if(status == true){
-          $("#button").html(appButton);
-      } else {
-          $("#button").html(loginButton);
-      }
+    if(status == "true"){
+        $("#button").html(appButton);
+    } else {
+        $("#button").html(loginButton);
+    }
+    
 
   };
 

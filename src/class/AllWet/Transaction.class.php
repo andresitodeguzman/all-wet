@@ -92,16 +92,16 @@ class Transaction {
     }
 
     final public function add($t_array){
-        if($t_array['transaction_date']) $this->transaction_date = $t_array['transaction_date'];
-        if($t_array['transaction_time']) $this->transaction_ = $t_array['transaction_time'];
-        if($t_array['customer_id']) $this->customer_id = $t_array['customer_id'];
-        if($t_array['transaction_items']) $this->transaction_items = $t_array['transaction_items'];
-        if($t_array['transaction_count']) $this->transaction_count = $t_array['transaction_count'];
-        if($t_array['transaction_price']) $this->transaction_price = $t_array['transaction_price'];
-        if($t_array['transaction_status']) $this->transaction_status = $t_array['transaction_status'];
-        if($t_array['transaction_longitude']) $this->transaction_longitude = $t_array['transaction_longitude'];
-        if($t_array['transaction_latitude']) $this->transaction_latitude = $t_array['transaction_latitude'];
-        if($t_array['transaction_address']) $this->transaction_address = $t_array['transaction_address'];
+        $this->transaction_date = $t_array['transaction_date'];
+        $this->transaction_ = $t_array['transaction_time'];
+        $this->customer_id = $t_array['customer_id'];
+        $this->transaction_items = $t_array['transaction_items'];
+        $this->transaction_count = $t_array['transaction_count'];
+        $this->transaction_price = $t_array['transaction_price'];
+        $this->transaction_status = $t_array['transaction_status'];
+        $this->transaction_longitude = $t_array['transaction_longitude'];
+        $this->transaction_latitude = $t_array['transaction_latitude'];
+        $this->transaction_address = $t_array['transaction_address'];
 
         $stmt = $this->mysqli->prepare("INSERT INTO `transaction` (transaction_date, transaction_time, customer_id, transaction_items, transaction_count, transaction_price, transaction_status, transaction_longitude, transaction_latitude, transaction_address)");
         $stmt->bind_param("ssssssssss", $this->transaction_date, $this->transaction_time, $this->customer_id, $this->transaction_items, $this->transaction_count, $this->transaction_price, $this->transaction_status, $this->transaction_longitude, $this->transaction_latitude, $this->transaction_address);
@@ -111,19 +111,19 @@ class Transaction {
     }
 
     final public function update($t_array){
-        if($t_array['transaction_id']) $this->transaction_id = $t_array['transaction_id'];
-        if($t_array['transaction_date']) $this->transaction_date = $t_array['transaction_date'];
-        if($t_array['transaction_time']) $this->transaction_ = $t_array['transaction_time'];
-        if($t_array['customer_id']) $this->customer_id = $t_array['customer_id'];
-        if($t_array['transaction_items']) $this->transaction_items = $t_array['transaction_items'];
-        if($t_array['transaction_count']) $this->transaction_count = $t_array['transaction_count'];
-        if($t_array['transaction_price']) $this->transaction_price = $t_array['transaction_price'];
-        if($t_array['transaction_status']) $this->transaction_status = $t_array['transaction_status'];
-        if($t_array['transaction_longitude']) $this->transaction_longitude = $t_array['transaction_longitude'];
-        if($t_array['transaction_latitude']) $this->transaction_latitude = $t_array['transaction_latitude'];
-        if($t_array['transaction_address']) $this->transaction_address = $t_array['transaction_address'];
+        $this->transaction_id = $t_array['transaction_id'];
+        $this->transaction_date = $t_array['transaction_date'];
+        $this->transaction_time = $t_array['transaction_time'];
+        $this->customer_id = $t_array['customer_id'];
+        $this->transaction_items = $t_array['transaction_items'];
+        $this->transaction_count = $t_array['transaction_count'];
+        $this->transaction_price = $t_array['transaction_price'];
+        $this->transaction_status = $t_array['transaction_status'];
+        $this->transaction_longitude = $t_array['transaction_longitude'];
+        $this->transaction_latitude = $t_array['transaction_latitude'];
+        $this->transaction_address = $t_array['transaction_address'];
 
-        $stmt = $this->mysqli->prepare("UPDATE `transaction_` = ?, `transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ?,`transaction_` = ? FROM `transaction` WHERE `transaction_id` = ?");
+        $stmt = $this->mysqli->prepare("UPDATE `transaction` SET `transaction_date` = ?, `transaction_time` = ?,`customer_id` = ?,`transaction_items` = ?,`transaction_count` = ?,`transaction_price` = ?,`transaction_status` = ?,`transaction_longitude` = ?,`transaction_latitude` = ?,`transaction_address` = ? WHERE `transaction_id` = ?");
         $stmt->bind_param("sssssssssss", $this->transaction_date, $this->transaction_time, $this->customer_id, $this->transaction_items, $this->transaction_count, $this->transaction_price, $this->transaction_status, $this->transaction_longitude, $this->transaction_latitude, $this->transaction_address,$this->transaction_id);
         $stmt->execute();
 
@@ -134,7 +134,7 @@ class Transaction {
         $this->transaction_id = $transaction_id;
         $this->transaction_status = $transaction_status;
         
-        $stmt = $this->mysqli->prepare("UPDATE `transaction_status` = ? FROM `transaction` WHERE `transaction_id` =?");
+        $stmt = $this->mysqli->prepare("UPDATE `transaction` SET `transaction_status` = ? WHERE `transaction_id` =?");
         $stmt->bind_param("ss", $this->transaction_status, $this->transaction_id);
         $stmt->execute();
 

@@ -50,25 +50,32 @@ require_once("../_system/config.php");
                 </a>
                 <a href="/app">
                     <span class="white-text email">
-                        <?=$subscriber_number?>
+                        <span id="sidenav_customer_number"></span>
                     </span>
                 </a>
             </div>
         </li>
-		<div id="app">
 
-		<sidebar-entry
-			loc="/"
-			icon="add"
-			title="Hello World!"></sidebar-entry>
 
 		</div>
 	    <li><a href="/app/order.php"><i class="material-icons">add</i> Order</a></li>
         <li><a href="/app"><i class="material-icons">list</i> My Order</a></li>
-        <li><a href="/authentication/logout.php"><i class="material-icons">person</i> Log-out</a></li>
+        <li><a href="/authenticate/logout.php"><i class="material-icons">person</i> Log-out</a></li>
     </ul>
 
-</div>
+    <div class="activity col s12" id="myorder">
+        <div class="container">
+            <h4 class="blue-text text-darken-3"><b>My Order</b></h4>
+            <br>
+            <div id="orderList"></div>
+        </div>
+    </div>
+
+    <div class="activity col s12" id="products">
+        <br>
+        <h4>Product</h4>
+    </div>
+
 </body>
 </html>
 <script>
