@@ -12,15 +12,15 @@ namespace AllWet;
 class Employee {
 
     // Properties
-    private $mysqli;
+    public $mysqli;
 
-    private $employee_array;
+    public $employee_array;
 
-    private $employee_id;
-    private $employee_name;
-    private $employee_username;
-    private $employee_password;
-    private $employee_image;
+    public $employee_id;
+    public $employee_name;
+    public $employee_username;
+    public $employee_password;
+    public $employee_image;
 
     // Methods
 
@@ -39,7 +39,7 @@ class Employee {
      * @param: $employee_username
      * @return: Bool
      */
-    final private function usernameExists($employee_username){
+    final public function usernameExists($employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -62,7 +62,7 @@ class Employee {
      * @param: none
      * @return: Array
      */
-    final private function getAll(){
+    final public function getAll(){
         // Query in DB
         $stmt = $this->mysqli->prepare("SELECT `employee_id`, `employee_name`, `employee_username`, `employee_image` FROM `employee`");
         $stmt->execute();
@@ -99,7 +99,7 @@ class Employee {
      * @param: $employee_id
      * @return: Array
      */
-    final private function get($employee_id){
+    final public function get($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -120,7 +120,7 @@ class Employee {
      * @param: $employee_username
      * @return: Array
      */
-    final private function getByUsername(String $employee_username){
+    final public function getByUsername(String $employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -141,7 +141,7 @@ class Employee {
      * @param: $employee_id
      * @return: Bool
      */
-    final private function delete($employee_id){
+    final public function delete($employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -171,7 +171,7 @@ class Employee {
      * @param: $employee_name, $employee_username, $employee_password, $employee_image
      * @return: Bool
      */
-    final private function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
+    final public function add(String $employee_name, String $employee_username, String $employee_password, String $employee_image){
         // Handle Params
         $this->employee_name = $employee_name;
         $this->employee_username = $employee_username;
@@ -202,7 +202,7 @@ class Employee {
 
     }
   
-  final private function updateInfo($employee_id, String $employee_name, String $employee_image){
+  final public function updateInfo($employee_id, String $employee_name, String $employee_image){
     $this->employee_id = $employee_id;
     $this->employee_name = $employee_name;
     $this->employee_image = $employee_image;
@@ -223,7 +223,7 @@ class Employee {
     }
   }
 
-  final private function updateUsername($employee_id, String $employee_username){
+  final public function updateUsername($employee_id, String $employee_username){
     $this->employee_id = $employee_id;
     $this->employee_username = $employee_username;
     
@@ -248,7 +248,7 @@ class Employee {
     }
   }
   
-  final private function verifyPassword(String $employee_username, String $employee_password){
+  final public function verifyPassword(String $employee_username, String $employee_password){
     $this->employee_username = $employee_username;
     $this->employee_password = $employee_password;
     
@@ -265,7 +265,7 @@ class Employee {
     }
   }
   
-  final private function updatePassword($employee_id, String $employee_password, String $employee_new_password){
+  final public function updatePassword($employee_id, String $employee_password, String $employee_new_password){
     $this->employee_id = $employee_id;
     $this->employee_password = $employee_password;
       if($this->verifyPassword($this->employee_password)){

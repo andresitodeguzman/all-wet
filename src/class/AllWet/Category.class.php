@@ -12,14 +12,14 @@
  class Category {
 
     // Properties
-    private $mysqli;
+    public $mysqli;
 
-    private $category_array;
+    public $category_array;
 
-    private $category_id;
-    private $category_name;
-    private $category_description;
-    private $category_code;
+    public $category_id;
+    public $category_name;
+    public $category_description;
+    public $category_code;
 
     // Method
 
@@ -38,7 +38,7 @@
      * @param: $category_code
      * @return: Bool
      */
-    final private function codeExists($category_code){
+    final public function codeExists($category_code){
         // Handle Params
         $this->category_code = $category_code;
 
@@ -62,7 +62,7 @@
      * @param: none
      * @return: array
      */
-    final private function getAll(){
+    final public function getAll(){
 
         // Query
         $stmt = $this->mysqli->prepare("SELECT * FROM category");
@@ -100,7 +100,7 @@
      * @param: $category_id
      * @return: array
     */
-    final private function get($category_id){
+    final public function get($category_id){
         // Handle Param
         $this->category_id = $category_id;
 
@@ -122,7 +122,7 @@
      * @param: $category_name, $category_description, $category_code
      * @return: Bool
      */
-    final private function add(String $category_name, String $category_description, String $category_code){
+    final public function add(String $category_name, String $category_description, String $category_code){
         // Handle Params
         $this->category_name = $category_name;
         $this->category_description = $category_description;
@@ -148,7 +148,7 @@
      * @param: $category_id
      * @return: Bool
      */
-    final private function delete($category_id){
+    final public function delete($category_id){
         // Handle Params
         $this->category_id = $category_id;
 
@@ -179,7 +179,7 @@
      * @param: $category_id, $category_name, $category_description, $category_code
      * @return: Bool
      */
-    final private function update($category_id, String $category_name, String $category_description, String $category_code){
+    final public function update($category_id, String $category_name, String $category_description, String $category_code){
         // Handle Params
         $this->category_id = $category_id;
         $this->category_name = $category_name;

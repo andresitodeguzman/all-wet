@@ -12,16 +12,16 @@ namespace AllWet;
 class Customer {
 
     // Properties
-    private $mysqli;
+    public $mysqli;
 
-    private $customer_id;
-    private $customer_number;
-    private $customer_name;
-    private $customer_longitude;
-    private $customer_latitude;
-    private $customer_address;
-    private $customer_image;
-    private $customer_access_token;
+    public $customer_id;
+    public $customer_number;
+    public $customer_name;
+    public $customer_longitude;
+    public $customer_latitude;
+    public $customer_address;
+    public $customer_image;
+    public $customer_access_token;
 
     // Methods
 
@@ -34,7 +34,7 @@ class Customer {
         $this->mysqli = $mysqli;
     }
 
-    final private function numberExists($customer_number){
+    final public function numberExists($customer_number){
         $this->customer_number = $customer_number;
 
         $stmt = $this->mysqli->prepare("SELECT * FROM `customer` WHERE `customer_number` = ?");
@@ -49,7 +49,7 @@ class Customer {
         }
     }
 
-    final private function getAll(){
+    final public function getAll(){
         $stmt = $this->mysqli->prepare("SELECT `customer_id`, `customer_number`, `customer_name`, `customer_longitude`, `customer_latitude`, `customer_address`, `customer_image` FROM `customer`");
         $stmt->execute();
         $result = $this->get_result();
@@ -57,7 +57,7 @@ class Customer {
         return $result->fetch_array();
     }
 
-    final private function get($customer_id){
+    final public function get($customer_id){
         $this->customer_id = $customer_id;
         $stmt = $this->mysqli->prepare("SELECT `customer_id`, `customer_number`, `customer_name`, `customer_longitude`, `customer_latitude`, `customer_address`, `customer_image` FROM `customer` WHERE `customer_id` = ? LIMIT 1");
         $stmt->bind_param("s", $this->customer_id);
@@ -67,7 +67,7 @@ class Customer {
         return $result->fetch_assoc();
     }
 
-    final private function getByCustomerNumber($customer_number){
+    final public function getByCustomerNumber($customer_number){
         $this->customer_number = $customer_number;
         $stmt = $this->mysqli->prepare("SELECT `customer_id`, `customer_number`, `customer_name`, `customer_longitude`, `customer_latitude`, `customer_address`, `customer_image` FROM `customer` WHERE `customer_number` = ? LIMIT 1");
         $stmt->bind_param("s", $this->customer_number);
@@ -77,7 +77,7 @@ class Customer {
         return $result->fetch_assoc();
     }
 
-    final private function delete($customer_id){
+    final public function delete($customer_id){
         $this->customer_id = $customer_id;
         $stmt = $this->mysqli->prepare("DELETE FROM `customer` WHERE `customer_id` = ?");
         $stmt->bind_param("s", $this->customer_id);
@@ -91,7 +91,7 @@ class Customer {
 
     }
 
-    final private function add($c_array){
+    final public function add($c_array){
         if($c_array['customer_number']) $this->customer_number = $c_array['customer_number'];
         if($c_array['customer_name']) $this->customer_name = $c_array['customer_name'];
         if($c_array['customer_longitude']) $this->customer_longitude = $c_array['customer_longitude'];
@@ -111,7 +111,7 @@ class Customer {
         }
     }
 
-    final private function update($c_array){
+    final public function update($c_array){
         if($c_array['customer_id']) $this->customer_id = $c_array['customer_id'];
         if($c_array['customer_number']) $this->customer_number = $c_array['customer_number'];
         if($c_array['customer_name']) $this->customer_name = $c_array['customer_name'];

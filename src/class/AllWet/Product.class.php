@@ -12,16 +12,16 @@ namespace AllWet;
 class Product {
 
     // Properties
-    private $mysqli;
+    public $mysqli;
 
-    private $product_id;
-    private $product_code;
-    private $product_name;
-    private $product_description;
-    private $category_id;
-    private $product_price;
-    private $product_available;
-    private $product_image;
+    public $product_id;
+    public $product_code;
+    public $product_name;
+    public $product_description;
+    public $category_id;
+    public $product_price;
+    public $product_available;
+    public $product_image;
 
     // Methods
 
@@ -39,7 +39,7 @@ class Product {
      * @param: $product_code
      * @return: Bool
      */
-    final private function codeExists($product_code){
+    final public function codeExists($product_code){
         // Handle Param
         $this->product_code = $product_code;
 
@@ -63,7 +63,7 @@ class Product {
      * @param: none
      * @return: Array
      */
-    final private function getAll(){
+    final public function getAll(){
         // Query in DB
         $stmt = $this->mysqli->prepare("SELECT * FROM `product`");
         $stmt->execute();
@@ -100,7 +100,7 @@ class Product {
      * @param: $product_id
      * @return: array
      */
-    final private function get($product_id){
+    final public function get($product_id){
         // Handle Param
         $this->product_id = $product_id;
 
@@ -123,7 +123,7 @@ class Product {
      * @param: $product_id
      * @return: Bool
      */
-    final private function delete($product_id){
+    final public function delete($product_id){
         // Handle Params
         $this->product_id = $product_id;
 
@@ -154,7 +154,7 @@ class Product {
      * @param: $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
      * @return: Bool
      */
-    final private function add(String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
+    final public function add(String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
         // Handle Params
         $this->product_code = $product_code;
         $this->product_name = $product_name;
@@ -183,7 +183,7 @@ class Product {
      * @param: $product_id, $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
      * @return: Bool
      */
-    final private function update($product_id, String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
+    final public function update($product_id, String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
         // Handle Params
         $this->product_id = $product_id;
         $this->product_code = $product_code;

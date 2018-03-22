@@ -12,21 +12,21 @@ namespace AllWet;
 class Transaction {
     
     // Properties
-    private $mysqli;
+    public $mysqli;
 
-    private $transaction_array;
+    public $transaction_array;
 
-    private $transaction_id = 0;
-    private $transaction_date;
-    private $transaction_time;
-    private $customer_id;
-    private $transaction_items;
-    private $transaction_count;
-    private $transaction_price;
-    private $transaction_status;
-    private $transaction_longitude;
-    private $transaction_latitude;
-    private $transaction_address;
+    public $transaction_id = 0;
+    public $transaction_date;
+    public $transaction_time;
+    public $customer_id;
+    public $transaction_items;
+    public $transaction_count;
+    public $transaction_price;
+    public $transaction_status;
+    public $transaction_longitude;
+    public $transaction_latitude;
+    public $transaction_address;
     
     // Methods
 
@@ -39,7 +39,7 @@ class Transaction {
         $this->mysqli = $mysqli;
     }
 
-    final private function getAll(){
+    final public function getAll(){
         $stmt = $this->mysqli->prepare("SELECT * FROM `transaction`");
         $stmt->execute();
         $result = $stmt->get_result();        
@@ -53,7 +53,7 @@ class Transaction {
         return $this->transaction_array;
     }
 
-    final private function get($transaction_id){
+    final public function get($transaction_id){
         $this->transaction_id = $transaction_id;
 
         $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `transaction_id` = ? LIMIT 1");
@@ -66,7 +66,7 @@ class Transaction {
 
     }
 
-    final private function getAllByCustomerId($customer_id){
+    final public function getAllByCustomerId($customer_id){
         $this->customer_id = $customer_id;
 
         $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `customer_id` = ?");
@@ -77,7 +77,7 @@ class Transaction {
         return $result->fetch_array();
     }
 
-    final private function delete($transaction_id){
+    final public function delete($transaction_id){
         $this->transaction_id = $transaction_id;
 
         $stmt = $this->mysqli->prepare("DELETE FROM `transaction` WHERE `transaction_id` = ?");
@@ -91,7 +91,7 @@ class Transaction {
         }
     }
 
-    final private function add($t_array){
+    final public function add($t_array){
         if($t_array['transaction_date']) $this->transaction_date = $t_array['transaction_date'];
         if($t_array['transaction_time']) $this->transaction_ = $t_array['transaction_time'];
         if($t_array['customer_id']) $this->customer_id = $t_array['customer_id'];
@@ -110,7 +110,7 @@ class Transaction {
         return True;
     }
 
-    final private function update($t_array){
+    final public function update($t_array){
         if($t_array['transaction_id']) $this->transaction_id = $t_array['transaction_id'];
         if($t_array['transaction_date']) $this->transaction_date = $t_array['transaction_date'];
         if($t_array['transaction_time']) $this->transaction_ = $t_array['transaction_time'];
@@ -130,7 +130,7 @@ class Transaction {
         return True;
     }
 
-    final private function updateStatus($transaction_id, $transaction_status){
+    final public function updateStatus($transaction_id, $transaction_status){
         $this->transaction_id = $transaction_id;
         $this->transaction_status = $transaction_status;
         
