@@ -4,7 +4,7 @@
  * 2018
  * 
  * API
- * Category
+ * Product
  * getAll
  */
 
@@ -12,7 +12,7 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-$obj = new AllWet\Category($mysqli);
+$obj = new AllWet\Product($mysqli);
 
 $data = $obj->getAll();
 
