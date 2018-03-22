@@ -78,12 +78,14 @@ class Product {
             $product_code = $prod['product_code'];
             $product_name = $prod['product_name'];
             $product_description = $prod['product_description'];
+            $product_image = $prod['product_image'];
 
             $prep_arr = array(
                 "product_id" => $product_id,
                 "product_code" => $product_code,
                 "product_name" => $product_name,
-                "product_description" => $product_description
+                "product_description" => $product_description,
+                "product_image" => $product_image
             );
 
             array_push($this->product_array, $prep_arr);
@@ -108,13 +110,10 @@ class Product {
         $stmt = $this->mysqli->prepare("SELECT * FROM `product` WHERE `product_id` = ?");
         $stmt->bind_param("s",$this->product_id);
         $stmt->execute();
-        $result = $this->get_result();
+        $result = $stmt->get_result();
 
-        if($result->fetch_assoc()){
-            return $result->fetch_assoc();
-        } else {
-            return False;
-        }
+        return $result->fetch_assoc();
+        
     }
 
     /**

@@ -4,18 +4,24 @@
  * 2018
  * 
  * API
- * Product
- * getAll
+ * Customer
+ * get
  */
+
 require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-$_SESSION['logged_in'] = True;
+if(empty($_REQUEST['id'])){
+    $ret =  json_encode(array("400"=>"Empty ID"));
+    die($ret);
+} else {
+    $id = $_REQUEST['id'];
+}
 
-$obj = new AllWet\Product($mysqli);
+$obj = new AllWet\Customer($mysqli);
 
-$data = $obj->getAll();
+$data = $obj->get($id);
 
 
 if(empty($data)){
