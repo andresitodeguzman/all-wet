@@ -35,6 +35,35 @@ class Product {
     }
 
     /**
+     * add
+     * 
+     * @param: $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
+     * @return: Bool
+     */
+    final public function add(String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
+        // Handle Params
+        $this->product_code = $product_code;
+        $this->product_name = $product_name;
+        $this->product_description = $product_description;
+        $this->category_id = $category_id;
+        $this->product_price = $product_price;
+        $this->product_available = $product_available;
+        $this->product_image = $product_image;
+
+        // Check if code exists
+        if($this->codeExists($this->product_code)){
+            return False;
+        } else {
+            // Insert in DB
+            $stmt = $this->mysqli->prepare("INSERT INTO `product` (product_code, product_name, product_description, category_id, product_price, product_available, product_image) VALUES (?,?,?,?,?,?,?)");
+            $stmt->bind_param("sssssss", $this->product_code, $this->product_name, $this->product_description, $this->category_id, $this->product_price, $this->product_available, $this->product_image);
+            $stmt->execute();
+
+            return True;
+        }
+    }
+
+    /**
      * codeExists
      * @param: $product_code
      * @return: Bool
@@ -56,7 +85,17 @@ class Product {
             return False;
         }
     }
-
+  
+    final public function delete($product_id){
+      $this->product_id = $product_id;
+      
+      $stmt = $this->mysqli->prepare("DELETE FROM `product` WHERE `product_id` = ?");
+      $stmt->bind_param("s", $this->product_id);
+      $stmt->execute();
+      
+      return True;
+    }
+  
     /**
      * getAll
      * 
@@ -116,65 +155,6 @@ class Product {
         
     }
 
-    /**
-     * delete
-     * 
-     * @param: $product_id
-     * @return: Bool
-     */
-    final public function delete($product_id){
-        // Handle Params
-        $this->product_id = $product_id;
-
-        // Delete in DB
-        $stmt = $this->mysqli->prepare("DELETE FROM `product` WHERE `product_id` = ?");
-        $stmt->bind_param("s",$this->product_id);
-        $stmt->execute();
-
-        // Check if deleted
-        $stmt = $this->mysqli->prepare("SELECT product_id FROM `product` WHERE product_id = ? LIMIT 1");
-        $stmt->bind_param("s",$this->product_id);
-        $stmt->execute();
-
-        
-        $result = $stmt->get_result();
-        $result = $result->fetch_assoc();
-
-        if(empty($result)){
-            return True;
-        } else {
-            return False;
-        }
-    }
-
-    /**
-     * add
-     * 
-     * @param: $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
-     * @return: Bool
-     */
-    final public function add(String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
-        // Handle Params
-        $this->product_code = $product_code;
-        $this->product_name = $product_name;
-        $this->product_description = $product_description;
-        $this->category_id = $category_id;
-        $this->product_price = $product_price;
-        $this->product_available = $product_available;
-        $this->product_image = $product_image;
-
-        // Check if code exists
-        if($this->codeExists($this->product_code)){
-            return False;
-        } else {
-            // Insert in DB
-            $stmt = $this->mysqli->prepare("INSERT INTO `product` (product_code, product_name, product_description, category_id, product_price, product_available, product_image) VALUES (?,?,?,?,?,?,?)");
-            $stmt->bind_param("sssssss", $this->product_code, $this->product_name, $this->product_description, $this->category_id, $this->product_price, $this->product_available, $this->product_image);
-            $stmt->execute();
-
-            return True;
-        }
-    }
 
     /**
      * update

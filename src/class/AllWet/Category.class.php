@@ -81,7 +81,60 @@
         }
 
     }
+   
+   /**
+     * delete
+     * 
+     * @param: $category_id
+     * @return: Bool
+     */
+    final public function delete($category_id){
+        // Handle Params
+        $this->category_id = $category_id;
 
+        // Delete from DB
+        $stmt = $this->mysqli->prepare("DELETE FROM `category` WHERE category_id = ?");
+        $stmt->bind_param("s",$this->category_id);
+        $stmt->execute();
+
+        // Check if deleted
+        $stmt = $this->mysqli->prepare("SELECT category_id FROM `category` WHERE category_id = ? LIMIT 1");
+        $stmt->bind_param("s",$this->category_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $result = $result->fetch_assoc();
+
+        if(empty($result)){
+            return True;
+        } else {
+            return False;
+        }
+
+    }
+
+   /**
+     * get
+     * @param: $category_id
+     * @return: array
+    */
+    final public function get($category_id){
+        // Handle Param
+        $this->category_id = $category_id;
+
+        // Prepare Statement
+        $stmt = $this->mysqli->prepare("SELECT * FROM `category` WHERE `category_id` = ?");
+        // Bind and execute
+        $stmt->bind_param("s",$this->category_id);
+        $stmt->execute();
+
+        // Handle Result
+        $result = $stmt->get_result();
+
+        // Return Result
+        return $result->fetch_assoc();
+    }
+   
     /**
      * getAll
      * @param: none
@@ -118,59 +171,6 @@
 
         // Return Result
         return $this->category_array;
-    }
-
-    /**
-     * get
-     * @param: $category_id
-     * @return: array
-    */
-    final public function get($category_id){
-        // Handle Param
-        $this->category_id = $category_id;
-
-        // Prepare Statement
-        $stmt = $this->mysqli->prepare("SELECT * FROM `category` WHERE `category_id` = ?");
-        // Bind and execute
-        $stmt->bind_param("s",$this->category_id);
-        $stmt->execute();
-
-        // Handle Result
-        $result = $stmt->get_result();
-
-        // Return Result
-        return $result->fetch_assoc();
-    }
-
-    /**
-     * delete
-     * 
-     * @param: $category_id
-     * @return: Bool
-     */
-    final public function delete($category_id){
-        // Handle Params
-        $this->category_id = $category_id;
-
-        // Delete from DB
-        $stmt = $this->mysqli->prepare("DELETE FROM `category` WHERE category_id = ?");
-        $stmt->bind_param("s",$this->category_id);
-        $stmt->execute();
-
-        // Check if deleted
-        $stmt = $this->mysqli->prepare("SELECT category_id FROM `category` WHERE category_id = ? LIMIT 1");
-        $stmt->bind_param("s",$this->category_id);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-        $result = $result->fetch_assoc();
-
-        if(empty($result)){
-            return True;
-        } else {
-            return False;
-        }
-
     }
 
     /**

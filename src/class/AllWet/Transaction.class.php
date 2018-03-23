@@ -38,59 +38,7 @@ class Transaction {
     function __construct($mysqli){
         $this->mysqli = $mysqli;
     }
-
-    final public function getAll(){
-        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction`");
-        $stmt->execute();
-        $result = $stmt->get_result();        
-
-        $this->transaction_array = array();
-
-        while($trans = $result->fetch_array()){
-            array_push($this->transaction_array, $trans);
-        }
-
-        return $this->transaction_array;
-    }
-
-    final public function get($transaction_id){
-        $this->transaction_id = $transaction_id;
-
-        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `transaction_id` = ? LIMIT 1");
-        $stmt->bind_param("s", $this->transaction_id);
-        $stmt->execute();
-
-        $result = $stmt->get_result();
-
-        return $result->fetch_assoc();
-
-    }
-
-    final public function getAllByCustomerId($customer_id){
-        $this->customer_id = $customer_id;
-
-        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `customer_id` = ?");
-        $stmt->bind_param("s", $this->customer_id);
-        $stmt->exec();
-
-        $result = $stmt->get_result();
-        return $result->fetch_array();
-    }
-
-    final public function delete($transaction_id){
-        $this->transaction_id = $transaction_id;
-
-        $stmt = $this->mysqli->prepare("DELETE FROM `transaction` WHERE `transaction_id` = ?");
-        $stmt->bind_param("s", $this->transaction_id);
-        $stmt->execute();
-    
-        if($this->get($this->transaction_id)){
-            return False;
-        } else {
-            return True;
-        }
-    }
-
+  
     final public function add($t_array){
         $this->transaction_date = $t_array['transaction_date'];
         $this->transaction_ = $t_array['transaction_time'];
@@ -108,6 +56,58 @@ class Transaction {
         $stmt->execute();
 
         return True;
+    }
+  
+    final public function delete($transaction_id){
+        $this->transaction_id = $transaction_id;
+
+        $stmt = $this->mysqli->prepare("DELETE FROM `transaction` WHERE `transaction_id` = ?");
+        $stmt->bind_param("s", $this->transaction_id);
+        $stmt->execute();
+    
+        if($this->get($this->transaction_id)){
+            return False;
+        } else {
+            return True;
+        }
+    }
+
+    final public function get($transaction_id){
+        $this->transaction_id = $transaction_id;
+
+        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `transaction_id` = ? LIMIT 1");
+        $stmt->bind_param("s", $this->transaction_id);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+
+        return $result->fetch_assoc();
+
+    }
+  
+    final public function getAll(){
+        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction`");
+        $stmt->execute();
+        $result = $stmt->get_result();        
+
+        $this->transaction_array = array();
+
+        while($trans = $result->fetch_array()){
+            array_push($this->transaction_array, $trans);
+        }
+
+        return $this->transaction_array;
+    }
+
+    final public function getAllByCustomerId($customer_id){
+        $this->customer_id = $customer_id;
+
+        $stmt = $this->mysqli->prepare("SELECT * FROM `transaction` WHERE `customer_id` = ?");
+        $stmt->bind_param("s", $this->customer_id);
+        $stmt->exec();
+
+        $result = $stmt->get_result();
+        return $result->fetch_array();
     }
 
     final public function update($t_array){
