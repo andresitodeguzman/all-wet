@@ -32,6 +32,31 @@
         $this->mysqli = $mysqli;
     }
 
+   /**
+     * add
+     * @param: $c_array
+     * @return: Bool
+     */
+    final public function add(Array $c_array){
+        // Handle Params
+        if($c_array['category_name']) $this->category_name = $c_array['category_name'];
+        if($c_array['category_description']) $this->category_description = $c_array['category_description'];
+        if($c_array['category_code']) $this->category_code = $c_array['category_code'];
+
+        // Check if code already exists
+        if($this->codeExists($this->category_code)){
+            return False;
+        } else {
+            // Insert into DB
+            $stmt = $this->mysqli->prepare("INSERT INTO `category`(category_name, category_description, category_code) VALUES (?,?,?)");
+            $stmt->bind_param("sss",$this->category_name, $this->category_description, $this->category_code);
+            $stmt->execute();
+
+            // Return true
+            return True;
+        }
+    }
+      
     /**
      * codeExists
      * 
@@ -115,31 +140,6 @@
 
         // Return Result
         return $result->fetch_assoc();
-    }
-
-    /**
-     * add
-     * @param: $c_array
-     * @return: Bool
-     */
-    final public function add(Array $c_array){
-        // Handle Params
-        if($c_array['category_name']) $this->category_name = $c_array['category_name'];
-        if($c_array['category_description']) $this->category_description = $c_array['category_description'];
-        if($c_array['category_code']) $this->category_code = $c_array['category_code'];
-
-        // Check if code already exists
-        if($this->codeExists($this->category_code)){
-            return False;
-        } else {
-            // Insert into DB
-            $stmt = $this->mysqli->prepare("INSERT INTO `category`(category_name, category_description, category_code) VALUES (?,?,?)");
-            $stmt->bind_param("sss",$this->category_name, $this->category_description, $this->category_code);
-            $stmt->execute();
-
-            // Return true
-            return True;
-        }
     }
 
     /**
