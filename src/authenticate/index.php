@@ -1,11 +1,28 @@
 <?php
+/**
+ * All Wet
+ * 2018
+ * 
+ * Authenticate
+ * index.php
+ */
+
+// Start session
 session_start();
+
+// Include Keys
 require_once("../_system/keys.php");
 
-if($_SESSION['logged_in']){
-    $at = "customer";
-    if($_SESSION['account_type']) $at = $_SESSION['account_type'];
+// Check if logged in
+if(@$_SESSION['logged_in']){
 
+    // Initially set type as customer
+    $at = "customer";
+
+    // Check if Account type exist
+    if(@$_SESSION['account_type']) $at = $_SESSION['account_type'];
+
+    // Switch along account type and redirect accordingly
     switch($at){
         case("admin"):
             header("Location: ../admin");
@@ -22,9 +39,14 @@ if($_SESSION['logged_in']){
     }
     
 } else {
-    if(empty($_REQUEST['account_type'])){
+
+    // Auto redirect if account type doesn't exist
+    if(@empty($_REQUEST['account_type'])){
+        // Redirect to Globe
         header("Location: $glb_login_redirect");
     } else {
+
+        // Switch along account type and redirect accordingly
         switch($_REQUEST['account_type']){
             case("admin"):
                 header("Location: admin.php");

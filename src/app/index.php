@@ -38,12 +38,12 @@ require_once("../_system/config.php");
     </div>
 
 	<ul class="sidenav" id="snav">
-        <li>
+            <li>
             <div class="user-view">
                 <div class="background blue darken-2">
                     <!--img src="/assets/imgs/sidenavbg.jpg"-->
                 </div>
-                <a href="app/profile.php">
+                <a href="/app">
                     <span class="white-text name">
                         <b>All Wet Customer</b>
                     </span>
@@ -58,22 +58,37 @@ require_once("../_system/config.php");
 
 
 		</div>
-	    <li><a href="/app/order.php"><i class="material-icons">add</i> Order</a></li>
-        <li><a href="/app"><i class="material-icons">list</i> My Order</a></li>
+
+        <li><a href="#" onclick="orderShow()"><i class="material-icons">view_list</i> My Order</a></li>
+        <li><a href="#" onclick="productsShow()"><i class="material-icons">local_mall</i> Products</a></li>
+        <li class="divider"></li>
         <li><a href="/authenticate/logout.php"><i class="material-icons">person</i> Log-out</a></li>
+
     </ul>
 
-    <div class="activity col s12" id="myorder">
+    <div class="activity col s12" id="myorderActivity">
         <div class="container">
             <h4 class="blue-text text-darken-3"><b>My Order</b></h4>
             <br>
             <div id="orderList"></div>
+            <br><br><br><br>
+        </div>
+        <div class="fixed-action-btn">
+            <a id="btnAdd" class="btn-floating btn-large blue darken-3 waves-effect waves-light" href="/app/order.php">
+                <i class="material-icons">add</i>
+            </a>
         </div>
     </div>
 
-    <div class="activity col s12" id="products">
-        <br>
-        <h4>Product</h4>
+    <div class="activity col s12" id="productsActivity">
+        <div class="container">
+            <h4 class="blue-text text-darken-3"><b>Products</b></h4>
+            <br>
+            <div class="cards-container">
+                <div id="productsList"></div>
+            </div>
+            <br><br><br>
+        </div>
     </div>
 
 </body>

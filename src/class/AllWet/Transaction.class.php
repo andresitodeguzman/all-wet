@@ -23,6 +23,7 @@ class Transaction {
     public $transaction_items;
     public $transaction_count;
     public $transaction_price;
+    public $transaction_payment_method;
     public $transaction_status;
     public $transaction_longitude;
     public $transaction_latitude;

@@ -1,23 +1,75 @@
 $(document).ready(()=>{
-	$(".sidenav").sidenav();
-
 	clear();
+
+	$(".sidenav").sidenav();
+	$("#btnAdd").hide();
+
 	loginCheck();
 	init();
 	setMyOrders();
+	setProducts();
 
-	$("#myorder").fadeIn();
-
+	$("#myorderActivity").fadeIn();
+	$("#btnAdd").slideDown();
 });
 
+// Global Cards
+let errorCard = `
+	<div class="card">
+		<div class="card-content">
+			<center><p class="grey-text">An Error Occured</p></center>
+		</div>
+	</div>
+`;
+
+let preloader = `
+	<center>
+		<div class="preloader-wrapper big active">
+			<div class="spinner-layer spinner-blue-only">
+				<div class="circle-clipper left">
+					<div class="circle"></div>
+				</div><div class="gap-patch">
+					<div class="circle"></div>
+				</div><div class="circle-clipper right">
+					<div class="circle"></div>
+				</div>
+			</div>
+		</div>
+	</center>
+`;
+
+// UI Functions
 var clear = ()=>{
 	$(".activity").hide();
 }
+var closeNav = ()=>{
+	$(".sidenav").sidenav('close');
+}
 
+
+// Activity Loader
+var orderShow = ()=>{
+	$("#btnAdd").hide();
+	clear();
+	closeNav();
+	$("#myorderActivity").fadeIn();
+	$("#btnAdd").slideDown();
+}
+
+var productsShow = ()=>{
+	clear();
+	closeNav();
+	$("#productsActivity").fadeIn();
+}
+
+
+// App Functions
 var init = ()=>{
-	var customer_number = 0 + localStorage.getItem('all-wet-customer-number');
 
+	// Sets mobile number in side nav
+	var customer_number = 0 + localStorage.getItem('all-wet-customer-number');
 	$('#sidenav_customer_number').html(customer_number);
+
 };
 
 
@@ -44,6 +96,9 @@ var setMyOrders = ()=>{
 		</div>
 	</div>
 	`;
+
+	$("#orderList").html(preloader);
+
 	var cid = getCustomerId();
 	$.ajax({
 		type:'GET',
@@ -54,16 +109,102 @@ var setMyOrders = ()=>{
 		},
 		success: result=>{
 			try{
-				var res = JSON.parse(result);
-				$.each(res, (index,order)=>{
-					alert(order);
-				});
+				if(result.code == "400"){
+					$("#orderList").html(empty);
+				} else {
+					$.each(result, (index,order)=>{
+						//
+					});
+				}				
 			}
 			catch(e) {
-				$("#orderList").html(empty);
+				$("#orderList").html(errorCard);
 			}
 		}
 	}).fail(()=>{
-
+		$("#orderList").html(errorCard);
 	});
 };
+
+var setProducts = ()=>{
+	var empty = `
+	<div class='card'>
+		<div class='card-content'>
+			<center>No Products Yet</center>
+		</div>
+	</div>
+	`;
+
+	$("#productsList").html(preloader);
+
+	$.ajax({
+		type:'GET',
+		cache: 'false',
+		url: '/api/Product/getAll.php',
+		data: {
+			a: 1
+		},
+		success: result=>{
+			try{
+				$("#productsList").html(" ");
+				$.each(result, (index,value)=>{
+					var n = value['product_name'];
+					var c = value['product_code'];
+					var d = value['product_description'];
+					var cat = value['category_id'];
+					var cn = value['category_name'];
+					var p = value['product_price'];
+					var a = value['product_available'];
+					var i = value['product_image'];
+
+					if(i){
+						var img = `
+						<div class="card-img">
+							<img src="${i}" width="100%">
+						</div>
+						`;
+					} else {
+						var img = ``;
+					}
+
+					if(a == 'True'){
+						var a = "Yes";
+					} else {
+						var a = "Out of Stock";
+					}
+
+
+					if(p){
+						var p = `PHP ${p}`;
+					} else {
+						var p = "Price Unavailable";
+					}
+
+					var templ = `
+						<div class="card hoverable">
+							${img}
+							<div class="card-content">
+								<p>
+									<b class='blue-text text-darken-1'>${n}</b> (${c})<br><br>
+									${d}<br>
+									<br>
+									<font size="-1">${cn}</font>
+									<br>
+									${p}
+								</p>
+							</div>
+						</div>
+					`;
+
+					$("#productsList").append(templ);					
+				});
+			}
+			catch(e){
+				$("#productsList").html(e);
+			}
+		}
+	}).fail(()=>{
+		$("#productsList").html(errorCard);
+	});
+
+}

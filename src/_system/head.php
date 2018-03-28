@@ -81,6 +81,42 @@ if('serviceWorker' in navigator){
 <link
     rel="stylesheet"
     href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    overscroll-behavior-y: none !important;
+}
+
+.cards-container {
+  column-break-inside: avoid;
+}
+.cards-container .card {
+  display: inline-block;
+  overflow: visible;
+  width:100% !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .cards-container {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+  }
+}
+@media only screen and (min-width: 601px) {
+  .cards-container {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+  }
+}
+@media only screen and (min-width: 993px) {
+  .cards-container {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+}
+</style>
 
 <!-- Javascript -->
 <script
