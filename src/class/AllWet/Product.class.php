@@ -117,6 +117,7 @@ class Product {
             $product_code = $prod['product_code'];
             $product_name = $prod['product_name'];
             $product_description = $prod['product_description'];
+            $product_available = $prod['product_available'];
             $category_id = $prod['category_id'];
             $product_price = $prod['product_price'];
             $product_image = $prod['product_image'];
@@ -126,6 +127,7 @@ class Product {
                 "product_code" => $product_code,
                 "product_name" => $product_name,
                 "product_description" => $product_description,
+                "product_available" => $product_available,
                 "category_id" => $category_id,
                 "product_price" => $product_price,
                 "product_image" => $product_image
