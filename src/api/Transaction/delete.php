@@ -4,7 +4,7 @@
  * 2018
  * 
  * API
- * Product
+ * Transaction
  * delete
  */
 
@@ -12,7 +12,7 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-$obj = new AllWet\Product($mysqli);
+$obj = new AllWet\Transaction($mysqli);
 
 function throwError($msg){
 	if(empty($msg)) $msg = "An error happened";
@@ -22,9 +22,9 @@ function throwError($msg){
 	);
 	die(json_encode($error));
 }
-if(empty($_REQUEST['product_id'])) throwError("Empty id");
+if(empty($_REQUEST['transaction_id'])) throwError("Empty id");
 
-$product_id = $_REQUEST['product_id'];
+$transaction_id = $_REQUEST['transaction_id'];
 
 $result = $obj->delete($array);
 
