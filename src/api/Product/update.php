@@ -4,8 +4,8 @@
  * 2018
  * 
  * API
- * Employee
- * add
+ * Product
+ * update
  */
 
 require_once("../../_system/keys.php");
@@ -22,7 +22,7 @@ function throwError($msg){
 	);
 	die(json_encode($error));
 }
-
+if(empty($_REQUEST['product_id'])) throwError("Empty id");
 if(empty($_REQUEST['product_code'])) throwError("Empty code");
 if(empty($_REQUEST['product_name'])) throwError("Empty name");
 if(empty($_REQUEST['product_description'])) throwError("Empty description");
@@ -31,6 +31,7 @@ if(empty($_REQUEST['product_price'])) throwError("Empty price");
 if(empty($_REQUEST['product_available'])) throwError("Empty availability");
 if(empty($_REQUEST['product_image'])) throwError("Empty image");
 
+$product_id = $_REQUEST['product_id'];
 $product_code = $_REQUEST['product_code'];
 $product_name = $_REQUEST['product_name'];
 $product_description = $_REQUEST['product_description'];
@@ -40,6 +41,7 @@ $product_available = $_REQUEST['product_available'];
 $product_image = $_REQUEST['product_image'];
 
 $array = array(
+	"product_id" => $product_id,
 	"product_code" => $product_code,
 	"product_name" => $product_name,
 	"product_description" => $product_description,
@@ -49,17 +51,17 @@ $array = array(
 	"product_image" => $product_image
 );
 
-$result = $obj->add($array);
+$result = $obj->update($array);
 
 if($result){
 	$res = array(
 		"code" => "200",
-		"message" => "Successfully Added"
+		"message" => "Successfully updated"
 	);
 } else {
 	$res = array(
 		"code" => "400",
-		"message" => "Fail to add"
+		"message" => "Fail to update"
 	);
 }
 
