@@ -4,7 +4,7 @@
  * 2018
  * 
  * API
- * Cathegory
+ * category
  * update
  */
 
@@ -12,7 +12,7 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-$obj = new AllWet\Cathegory($mysqli);
+$obj = new AllWet\Category($mysqli);
 
 function throwError($msg){
 	if(empty($msg)) $msg = "An error happened";
@@ -23,21 +23,21 @@ function throwError($msg){
 	die(json_encode($error));
 }
 
-if(empty($_REQUEST['cathegory_id'])) throwError("Empty id");
-if(empty($_REQUEST['cathegory_name'])) throwError("Empty name");
-if(empty($_REQUEST['cathegory_description'])) throwError("Empty description");
-if(empty($_REQUEST['cathegory_code'])) throwError("Empty code");
+if(empty($_REQUEST['category_id'])) throwError("Empty id");
+if(empty($_REQUEST['category_name'])) throwError("Empty name");
+if(empty($_REQUEST['category_description'])) throwError("Empty description");
+if(empty($_REQUEST['category_code'])) throwError("Empty code");
 
-$cathegory_id = $_REQUEST['cathegory_id'];
-$cathegory_name = $_REQUEST['cathegory_name'];
-$cathegory_description = $_REQUEST['cathegory_description'];
-$cathegory_code = $_REQUEST['cathegory_code'];
+$category_id = $_REQUEST['category_id'];
+$category_name = $_REQUEST['category_name'];
+$category_description = $_REQUEST['category_description'];
+$category_code = $_REQUEST['category_code'];
 
 $array = array(
-	"cathegory_id" => $cathegory_id,	
-	"cathegory_name" => $cathegory_name,
-	"cathegory_description" => $cathegory_description,
-	"cathegory_code" => $cathegory_code
+	"category_id" => $category_id,	
+	"category_name" => $category_name,
+	"category_description" => $category_description,
+	"category_code" => $category_code
 );
 
 $result = $obj->update($array);

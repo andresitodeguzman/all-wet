@@ -4,7 +4,7 @@
  * 2018
  * 
  * API
- * Cathegory
+ * category
  * delete
  */
 
@@ -12,7 +12,7 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-$obj = new AllWet\Cathegory($mysqli);
+$obj = new AllWet\Category($mysqli);
 
 function throwError($msg){
 	if(empty($msg)) $msg = "An error happened";
@@ -22,9 +22,9 @@ function throwError($msg){
 	);
 	die(json_encode($error));
 }
-if(empty($_REQUEST['cathegory_id'])) throwError("Empty id");
+if(empty($_REQUEST['category_id'])) throwError("Empty id");
 
-$cathegory_id = $_REQUEST['cathegory_id'];
+$category_id = $_REQUEST['category_id'];
 
 $result = $obj->delete($array);
 
