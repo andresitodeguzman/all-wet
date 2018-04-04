@@ -56,12 +56,12 @@ require_once("_system/config.php");
     let status = checkLoginStatus();
 
     let loginButton = `
-        <a class="btn btn-large blue darken-4 waves-effect waves-light" href="/authenticate">
-            Sign-In with Your Mobile Number
+        <a class="btn btn-large lightblue darken-4 waves-effect waves-light hover" href="/authenticate"> Sign-In with Your Mobile Number <i class="material-icons right">
+            smartphone</i>
         </a>`;
     
     let appButton = `
-        <a class="btn btn-large blue darken-4 waves-effect waves-light" href="/app">
+        <a class="btn btn-large blue darken-4 waves-effect waves-light hoverable btn-floating" href="/app">
             Open App
         </a>`;
 
