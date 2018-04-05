@@ -74,7 +74,7 @@ require_once("../_system/config.php");
             <br><br><br><br>
         </div>
         <div class="fixed-action-btn">
-            <a id="btnAdd" class="btn-floating btn-large blue darken-3 waves-effect waves-light" href="/app/order.php">
+            <a id="btnAdd" class="btn-floating btn-large blue darken-3 waves-effect waves-light btn-floating pulse" href="/app/order.php">
                 <i class="material-icons">add</i>
             </a>
         </div>
