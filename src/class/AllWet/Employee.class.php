@@ -26,7 +26,7 @@ class Employee {
 
     /**
      * __construct
-     * @param: 
+     * @param: $mysqli
      * @return: void
      */
     function __construct($mysqli){
@@ -36,8 +36,8 @@ class Employee {
     /**
      * add
      * 
-     * @param: $e_array
-     * @return: Bool
+     * @param: Array $e_array
+     * @return: Boolean
      */
     final public function add(Array $e_array){
         // Handle Params
@@ -73,10 +73,10 @@ class Employee {
    /**
      * delete
      * 
-     * @param: $employee_id
-     * @return: Bool
+     * @param: Int $employee_id
+     * @return: Boolean
      */
-    final public function delete($employee_id){
+    final public function delete(Int $employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -103,10 +103,10 @@ class Employee {
     /**
      * usernameExists
      * 
-     * @param: $employee_username
-     * @return: Bool
+     * @param: String $employee_username
+     * @return: Boolean
      */
-    final public function usernameExists($employee_username){
+    final public function usernameExists(String $employee_username){
         // Handle Param
         $this->employee_username = $employee_username;
 
@@ -163,10 +163,10 @@ class Employee {
     /**
      * get
      * 
-     * @param: $employee_id
+     * @param: Int $employee_id
      * @return: Array
      */
-    final public function get($employee_id){
+    final public function get(Int $employee_id){
         // Handle Param
         $this->employee_id = $employee_id;
 
@@ -184,7 +184,7 @@ class Employee {
     /**
      * getByUsername
      * 
-     * @param: $employee_username
+     * @param: String $employee_username
      * @return: Array
      */
     final public function getByUsername(String $employee_username){
@@ -233,60 +233,75 @@ class Employee {
   /**
    * updatePassword
    * 
-   * @param: $employee_id, $employee_password, $employee_new_password
-   * @return: Bool
+   * @param: Int $employee_id
+   * @param: String $employee_password
+   * @param: String $employee_new_password
+   * @return: Boolean
    */
-  final public function updatePassword($employee_id, String $employee_password, String $employee_new_password){
-    $this->employee_id = $employee_id;
-    $this->employee_password = $employee_password;
-      if($this->verifyPassword($this->employee_password)){
-        $nw_pw = password_hash(employee_new_password, PASSWORD_DEFAULT);
-        $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_password` = ? WHERE `employee_id` = ?");
-        $stmt->bind_param("ss", $nw_pw, $this->employee_id);
-        $stmt->execute();
-        return True;
-      }  else {
-        return "Wrong Password";        
-      }   
-  }
+    final public function updatePassword(Int $employee_id, String $employee_password, String $employee_new_password){
+        $this->employee_id = $employee_id;
+        $this->employee_password = $employee_password;
+
+        if($this->verifyPassword($this->employee_password)){
+            $nw_pw = password_hash(employee_new_password, PASSWORD_DEFAULT);
+
+            $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_password` = ? WHERE `employee_id` = ?");
+            $stmt->bind_param("ss", $nw_pw, $this->employee_id);
+            $stmt->execute();
+
+            return True;
+
+        }  else {
+            return "Wrong Password";        
+        }   
+    }
   
   /**
    * updateUsername
    * 
-   * @param: $employee_username
-   * @return: Bool
+   * @param: Int $employee_id
+   * @param: String $employee_username
+   * @return: Boolean
    */
-  final public function updateUsername($employee_id, String $employee_username){
-    $this->employee_id = $employee_id;
-    $this->employee_username = $employee_username;
-    
-    $inf = $this->get($this->employee_username);
-    $current_username = $inf['employee_username'];
-    if($current_username == $this->employee_username){
-       return False;
-    } else {
-      $stmt = $this->mysqli->prepare("SELECT employee_id FROM `employee` WHERE employee_username = ? EXCEPT employee_id = `?` LIMIT 1");
-      $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
-      $stmt->execute();
-      $result = $stmt->get_result();
-      $result = $stmt->fetch_assoc();
-      if($result){
-        return "Username already in use";
-      } else {
-        $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_username`=? WHERE `employee_id`=?");
-        $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
-        $stmt->execute();
-        return True;
-      }
+    final public function updateUsername(Int $employee_id, String $employee_username){
+        $this->employee_id = $employee_id;
+        $this->employee_username = $employee_username;
+
+        $inf = $this->get($this->employee_username);
+        $current_username = $inf['employee_username'];
+        if($current_username == $this->employee_username){
+            return False;
+        } else {
+            $stmt = $this->mysqli->prepare("SELECT employee_id FROM `employee` WHERE employee_username = ? EXCEPT employee_id = `?` LIMIT 1");
+            $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $result = $stmt->fetch_assoc();
+
+            if($result){
+
+                return "Username already in use";
+
+            } else {
+
+                $stmt = $this->mysqli->prepare("UPDATE `employee` SET `employee_username`=? WHERE `employee_id`=?");
+                $stmt->bind_param("ss", $this->employee_username, $this->employee_id);
+                $stmt->execute();
+
+                return True;
+
+            }
+        }
     }
-  }
 
   
   /**
    * verifyPassword
    * 
-   * @param: $employee_username, $employee_password
-   * @return: Bool
+   * @param: String $employee_username
+   * @param: String $employee_password
+   * @return: Boolean
    */
   final public function verifyPassword(String $employee_username, String $employee_password){
     $this->employee_username = $employee_username;
@@ -295,6 +310,7 @@ class Employee {
     $stmt = $this->mysqli->prepare("SELECT `employee_password` FROM `employee` WHERE `employee_username` = ? LIMIT 1");
     $stmt->bind_param("s", $this->employee_password);
     $stmt->execute();
+
     $result = $stmt->get_result();
     $result = $result->fetch_assoc();
     
