@@ -17,4 +17,14 @@ date_default_timezone_set($time_zone);
 $mysqli = new mysqli($sql_host,$sql_username,$sql_password,$sql_database);
 
 header('Content-Type: application/json');
+
+function throwError($msg){
+	if(empty($msg)) $msg = "An error happened";
+	$error = array(
+		"code"=>"500",
+		"message"=>$msg
+	);
+	die(json_encode($error));
+}
+
 ?>

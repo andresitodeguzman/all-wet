@@ -7,9 +7,9 @@
  * Category
  */
 
- namespace AllWet;
+namespace AllWet;
 
- class Category {
+class Category {
 
     // Properties
     public $mysqli;
@@ -34,10 +34,11 @@
 
    /**
      * add
-     * @param: $c_array
-     * @return: Bool
+     * @param: Array $c_array
+     * @return: Boolean
      */
     final public function add(Array $c_array){
+
         // Handle Params
         if($c_array['category_name']) $this->category_name = $c_array['category_name'];
         if($c_array['category_description']) $this->category_description = $c_array['category_description'];
@@ -60,10 +61,10 @@
     /**
      * codeExists
      * 
-     * @param: $category_code
-     * @return: Bool
+     * @param: Int $category_code
+     * @return: Boolean
      */
-    final public function codeExists($category_code){
+    final public function codeExists(Int $category_code){
         // Handle Params
         $this->category_code = $category_code;
 
@@ -85,10 +86,10 @@
    /**
      * delete
      * 
-     * @param: $category_id
-     * @return: Bool
+     * @param: Int $category_id
+     * @return: Boolean
      */
-    final public function delete($category_id){
+    final public function delete(Int $category_id){
         // Handle Params
         $this->category_id = $category_id;
 
@@ -115,10 +116,11 @@
 
    /**
      * get
-     * @param: $category_id
-     * @return: array
+     * 
+     * @param: Int $category_id
+     * @return: Array
     */
-    final public function get($category_id){
+    final public function get(Int $category_id){
         // Handle Param
         $this->category_id = $category_id;
 
@@ -137,8 +139,9 @@
    
     /**
      * getAll
+     * 
      * @param: none
-     * @return: array
+     * @return: Array
      */
     final public function getAll(){
 
@@ -176,8 +179,8 @@
     /**
      * update
      * 
-     * @param: $c_array
-     * @return: Bool
+     * @param: Array $c_array
+     * @return: Boolean
      */
     final public function update(Array $c_array){
         // Handle Params
