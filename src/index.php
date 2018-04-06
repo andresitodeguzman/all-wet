@@ -22,7 +22,19 @@ require_once("_system/config.php");
         .parallax-container {
             height: 100%;
         }
-		.action:hover{background-color:blue}
+		
+		.action{
+			transition:0.2s transform, 0.2s background-color
+		}
+		
+		.action:hover{
+			background-color:blue;
+			
+			}
+			
+		.action:focus{
+			transform: scale(0.9)
+		}
     </style>
 </head>
 <body>
