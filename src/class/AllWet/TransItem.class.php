@@ -9,8 +9,6 @@
 
 class TransItem {
 
-private $mysqli;
-
     private $mysqli;
 
     /**
