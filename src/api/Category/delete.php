@@ -14,14 +14,6 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Category($mysqli);
 
-function throwError($msg){
-	if(empty($msg)) $msg = "An error happened";
-	$error = array(
-		"code"=>"500",
-		"message"=>$msg
-	);
-	die(json_encode($error));
-}
 if(empty($_REQUEST['category_id'])) throwError("Empty id");
 
 $category_id = $_REQUEST['category_id'];

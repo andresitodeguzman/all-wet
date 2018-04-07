@@ -14,14 +14,6 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Transaction($mysqli);
 
-function throwError($msg){
-	if(empty($msg)) $msg = "An error happened";
-	$error = array(
-		"code"=>"500",
-		"message"=>$msg
-	);
-	die(json_encode($error));
-}
 if(empty($_REQUEST['transaction_id'])) throwError("Empty id");
 if(empty($_REQUEST['transaction_date'])) throwError("Empty date");
 if(empty($_REQUEST['transaction_time'])) throwError("Empty time");

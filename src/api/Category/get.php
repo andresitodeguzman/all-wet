@@ -12,12 +12,9 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-if(empty($_REQUEST['id'])){
-    $ret =  json_encode(array("code"=>"400","message"=>"Empty ID"));
-    die($ret);
-} else {
-    $id = $_REQUEST['id'];
-}
+if(empty($_REQUEST['category_id'])) throwError("Empty id");
+
+$id = $_REQUEST['category_id'];
 
 $obj = new AllWet\Category($mysqli);
 

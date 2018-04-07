@@ -12,14 +12,11 @@ require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
 
-if(empty($_REQUEST['id'])){
-    $ret =  json_encode(array("code"=>"400","message"=>"Empty ID"));
-    die($ret);
-} else {
-    $id = $_REQUEST['id'];
-}
-
 $obj = new AllWet\Product($mysqli);
+
+if(empty($_REQUEST['product_id'])) throwError("Empty id");
+
+$id = $_REQUEST['product_id'];
 
 $data = $obj->get($id);
 
