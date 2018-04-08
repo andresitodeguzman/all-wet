@@ -14,16 +14,6 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Category($mysqli);
 
-function throwError($msg){
-	if(empty($msg)) $msg = "An error happened";
-	$error = array(
-		"code"=>"500",
-		"message"=>$msg
-	);
-	die(json_encode($error));
-}
-
-
 if(empty($_REQUEST['category_name'])) throwError("Empty name");
 if(empty($_REQUEST['category_description'])) throwError("Empty description");
 if(empty($_REQUEST['category_code'])) throwError("Empty code");
@@ -32,8 +22,7 @@ $category_name = $_REQUEST['category_name'];
 $category_description = $_REQUEST['category_description'];
 $category_code = $_REQUEST['category_code'];
 
-$array = array(
-	
+$array = array(	
 	"category_name" => $category_name,
 	"category_description" => $category_description,
 	"category_code" => $category_code
@@ -49,7 +38,7 @@ if($result){
 } else {
 	$res = array(
 		"code" => "400",
-		"message" => "Fail to add"
+		"message" => $result
 	);
 }
 

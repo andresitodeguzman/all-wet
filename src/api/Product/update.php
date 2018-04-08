@@ -14,14 +14,6 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Product($mysqli);
 
-function throwError($msg){
-	if(empty($msg)) $msg = "An error happened";
-	$error = array(
-		"code"=>"500",
-		"message"=>$msg
-	);
-	die(json_encode($error));
-}
 if(empty($_REQUEST['product_id'])) throwError("Empty id");
 if(empty($_REQUEST['product_code'])) throwError("Empty code");
 if(empty($_REQUEST['product_name'])) throwError("Empty name");

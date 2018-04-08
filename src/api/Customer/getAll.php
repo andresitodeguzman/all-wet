@@ -16,7 +16,6 @@ $obj = new AllWet\Customer($mysqli);
 
 $data = $obj->getAll();
 
-
 if(empty($data)){
     $data = json_encode(array());
 } else {
