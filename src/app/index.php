@@ -17,6 +17,7 @@ require_once("../_system/config.php");
 	<?php require_once("../_system/head.php"); ?>
 	<script type="text/javascript" src="/app/_app.js"></script>
 	<style>
+	
         .nav-wrapper{
             padding-left:1%;
             padding-right: 3%;
