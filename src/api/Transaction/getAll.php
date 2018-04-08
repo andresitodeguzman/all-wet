@@ -14,7 +14,7 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Transaction($mysqli);
 $customer = new AllWet\Customer($mysqli);
-a
+
 $data = $obj->getAll();
 
 if(empty($data)){
