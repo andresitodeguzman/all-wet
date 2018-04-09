@@ -6,9 +6,7 @@
  * App
  * Index
  */
-
 require_once("../_system/config.php");
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,7 +15,6 @@ require_once("../_system/config.php");
 	<?php require_once("../_system/head.php"); ?>
 	<script type="text/javascript" src="/app/_app.js"></script>
 	<style>
-	
         .nav-wrapper{
             padding-left:1%;
             padding-right: 3%;
@@ -98,7 +95,6 @@ require_once("../_system/config.php");
 new Vue({
     el:"#app"
 });
-
 Vue.component('sidebar-entry',{
     props:['loc','icon','title'],
     template:`

@@ -30,12 +30,12 @@ foreach($data as $d){
     $product_price = $d['product_price'];
     $product_available = $d['product_available'];
     $product_image = $d['product_image'];
-
+	
     if($category_id){
         $category_inf = $cat->get($category_id);
         $category_name = $category_inf['category_name'];
     }
-
+	
     $arr = array(
         "product_id"=>"$product_id",
         "product_code"=>"$product_code",
@@ -47,7 +47,7 @@ foreach($data as $d){
         "product_available"=>"$product_available",
         "product_image"=>"$product_image",
     );
-
+	
     array_push($f_arr, $arr);
 }
 
