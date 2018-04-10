@@ -7,7 +7,7 @@
  * Product
  * get
  */
-
+ 
 require_once("../../_system/keys.php");
 require_once("../_secure.php");
 require_once("../_boot.php");
@@ -19,7 +19,6 @@ if(empty($_REQUEST['product_id'])) throwError("Empty id");
 $id = $_REQUEST['product_id'];
 
 $data = $obj->get($id);
-
 
 if(empty($data)){
     $data = json_encode(array());

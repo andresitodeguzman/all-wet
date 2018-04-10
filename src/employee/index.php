@@ -10,7 +10,7 @@
 <!Doctype html>
 <html>
     <head>
-        <title>All Wet</title>
+        <title>All Wet - Employee</title>
         <?php require("../_system/head.php"); ?>
         <script text="text/javascript" src="/employee/_app.js"></script>
         <style>
@@ -30,7 +30,7 @@
         <nav class="blue darken-3">
             <div class="nav-wrapper">
             <a href="#" data-target="snav" class="show-on-large sidenav-trigger"><i class="material-icons">menu</i></a>
-                <a class="title" href="#"><b>All Wet</b></a>
+                <a class="title" href="#"><b>All Wet - Employee</b></a>
             </div>
         </nav>
     </div>
@@ -57,27 +57,27 @@
 
 		</div>
 
-        <li><a href="#" onclick="deliveryShow()"><i class="material-icons">view_list</i>For Delivery</a></li>
-        <li><a href="#" onclick="productsShow()"><i class="material-icons">local_mall</i> Products</a></li>
+        <li><a href="#" onclick="deliveryShow()"><i class="material-icons">view_list</i>Products</a></li>
+        <li><a href="#" onclick="productsShow()"><i class="material-icons">local_mall</i> For Delivery</a></li>
         <li class="divider"></li>
         <li><a href="/authenticate/logout.php"><i class="material-icons">person</i> Log-out</a></li>
 
     </ul>
         
-        <!-- mydeliveryActivity -->
+        <!-- products -->
         <div class="activity col s12" id="mydeliveryActivity">
             <div class="container">
-                <h4 class="grey-text text-darken-3"><b>For Delivery</b></h4>
+                <h4 class="grey-text text-darken-3"><b>Products</b></h4>
                 <div id="orderlist"></div><br><br><br><br>
             </div>
         </div>
         <!-- mydeliveryActivity-->
 		
 		
-		<!-- transactionActivity -->
+		<!-- for delivery -->
         <div class="activity col s12" id="transactionActivity">
             <div class="container">
-                <h4 class="grey-text text-darken-3"><b>Products</b></h4>
+                <h4 class="grey-text text-darken-3"><b>For Delivery</b></h4>
                 <div id="transactionlist"></div><br><br><br><br>
             </div>
         </div>

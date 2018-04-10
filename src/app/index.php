@@ -6,9 +6,7 @@
  * App
  * Index
  */
-
 require_once("../_system/config.php");
-
 ?>
 <!DOCTYPE html>
 <html>

@@ -149,7 +149,7 @@ var setProducts = ()=>{
                     var p = value['transaction_price'];
                     var pm = value['transaction_payment_method'];
                     var s = value['transaction_status'];
-                    var lg = value['transaction_longitude'];
+                    var lo = value['transaction_longitude'];
                     var lt = value['transaction_latitude'];
                     var a = value['transaction_address'];
 
@@ -186,7 +186,7 @@ var setProducts = ()=>{
                                     <b>${cn}</b>
                                 </h5>
                                 <p>
-                                    Address: ${a}<br>
+                                    Stocks: ${a}<br>
                                     Date: ${d} ${t}
                                     Quantity: ${c}<br>
                                     Items: ${itm}<br>
