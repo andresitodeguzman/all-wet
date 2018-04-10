@@ -14,15 +14,7 @@ require_once("../_system/config.php");
 	<title>All Wet</title>
 	<?php require_once("../_system/head.php"); ?>
 	<script type="text/javascript" src="/app/_app.js"></script>
-<<<<<<< HEAD
-	<style>
-=======
-	<style>	
->>>>>>> fc27f57fcee4b9e6c88c94b7a18768d937538f02
-        .nav-wrapper{
-            padding-left:1%;
             padding-right: 3%;
-        }
         .title {
             padding-left: 1%;
             font-size: 18pt;
@@ -104,19 +96,3 @@ require_once("../_system/config.php");
 
 </body>
 </html>
-<<<<<<< HEAD
-<script>
-new Vue({
-    el:"#app"
-});
-Vue.component('sidebar-entry',{
-    props:['loc','icon','title'],
-    template:`
-        <li>
-            <a href='{{loc}}'><i class='material-icons'>{{icon}}</i> {{title}}</a>
-        </li>
-    `
-});	
-</script>
-=======
->>>>>>> fc27f57fcee4b9e6c88c94b7a18768d937538f02
