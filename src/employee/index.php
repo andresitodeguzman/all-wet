@@ -10,7 +10,11 @@
 <!Doctype html>
 <html>
     <head>
+<<<<<<< HEAD
         <title>All Wet Employee</title>
+=======
+        <title>All Wet - Employee</title>
+>>>>>>> fc27f57fcee4b9e6c88c94b7a18768d937538f02
         <?php require("../_system/head.php"); ?>
         <script text="text/javascript" src="/employee/_app.js"></script>
         <style>

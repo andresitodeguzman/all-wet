@@ -14,7 +14,11 @@ require_once("../_system/config.php");
 	<title>All Wet</title>
 	<?php require_once("../_system/head.php"); ?>
 	<script type="text/javascript" src="/app/_app.js"></script>
+<<<<<<< HEAD
 	<style>
+=======
+	<style>	
+>>>>>>> fc27f57fcee4b9e6c88c94b7a18768d937538f02
         .nav-wrapper{
             padding-left:1%;
             padding-right: 3%;
@@ -26,6 +30,8 @@ require_once("../_system/config.php");
     </style>
 </head>
 <body class="grey lighten-4">
+
+    <!-- navbar -->
 	<div class="navbar-fixed">
         <nav class="blue darken-3">
             <div class="nav-wrapper">
@@ -34,7 +40,9 @@ require_once("../_system/config.php");
             </div>
         </nav>
     </div>
+    <!-- .navbar -->
 
+    <!-- sideNav -->
 	<ul class="sidenav" id="snav">
             <li>
             <div class="user-view">
@@ -63,7 +71,9 @@ require_once("../_system/config.php");
         <li><a href="/authenticate/logout.php"><i class="material-icons">person</i> Log-out</a></li>
 
     </ul>
+    <!-- .sideNav-->
 
+    <!-- myorderActivity -->
     <div class="activity col s12" id="myorderActivity">
         <div class="container">
             <h4 class="blue-text text-darken-3"><b>My Order</b></h4>
@@ -77,7 +87,9 @@ require_once("../_system/config.php");
             </a>
         </div>
     </div>
+    <!-- myorderActivity -->
 
+    <!-- productsActivity -->
     <div class="activity col s12" id="productsActivity">
         <div class="container">
             <h4 class="blue-text text-darken-3"><b>Products</b></h4>
@@ -88,9 +100,11 @@ require_once("../_system/config.php");
             <br><br><br>
         </div>
     </div>
+    <!-- .productsActivity -->
 
 </body>
 </html>
+<<<<<<< HEAD
 <script>
 new Vue({
     el:"#app"
@@ -104,3 +118,5 @@ Vue.component('sidebar-entry',{
     `
 });	
 </script>
+=======
+>>>>>>> fc27f57fcee4b9e6c88c94b7a18768d937538f02

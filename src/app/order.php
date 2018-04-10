@@ -22,12 +22,12 @@ require_once("../_system/config.php");
             body{
                 height:100%;
             }
-            .btn-block {
-                width:100%;
-            }
             nav{
                 padding-top: 10px;
                 padding-right: 5%;
+            }
+            .btn-block {
+                width:100%;
             }
             .materialize-textarea{
                 color:white;
@@ -45,6 +45,7 @@ require_once("../_system/config.php");
         </nav>
         <!-- .NAV -->
 
+        <!-- locationLoaderActivity -->
         <div class="activity" id="locationLoaderActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -58,7 +59,9 @@ require_once("../_system/config.php");
                 </p>
             </div><br><br><br>
         </div>
+        <!-- .locationLoaderActivity -->
 
+        <!-- locationErrorActivity -->
         <div class="activity" id="locationErrorActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -71,7 +74,9 @@ require_once("../_system/config.php");
                 </p>
             </div><br><br><br><br>
         </div>
+        <!-- .locationErrorActivity -->
 
+        <!-- locationProblemActivity -->
         <div class="activity" id="locationProblemActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -84,7 +89,9 @@ require_once("../_system/config.php");
                 </p>
             </div><br><br><br><br>
         </div>
+        <!-- .locationProblemActivity -->
 
+        <!-- locationServiceErrorActivity -->
         <div class="activity" id="locationServiceErrorActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -97,7 +104,9 @@ require_once("../_system/config.php");
                 </p>
             </div><br><br><br><br>
         </div>
+        <!-- .locationServiceErrorActivity -->
 
+        <!-- locationActivity -->
         <div class="activity" id="locationActivity">
             <div class="container">
                 <div id="locationResult"></div>
@@ -123,7 +132,9 @@ require_once("../_system/config.php");
                 </div>
             </div><br><br><br><br>
         </div>
+        <!-- .locationActivity -->
 
+        <!-- enterAddressActivity -->
         <div class="activity" id="enterAddressActivity">
             <div class="container">
                 <h3 class="white-text">Where do you want your order to be delivered?</h3>
@@ -135,7 +146,9 @@ require_once("../_system/config.php");
                 <button id="submitManualLocation" class="btn btn-large btn-block blue darken-4 waves-effect waves-light">Ok, Done!</button>
             </div><br><br><br><br>
         </div>
+        <!-- .enterAddressActivity -->
 
+        <!-- orderActivity -->
         <div class="activity" id="orderActivity">
             <div class="container">
                 <h3 class="white-text">What do you want to order?</h3><br>
@@ -146,7 +159,9 @@ require_once("../_system/config.php");
                 </a>
             </div>
         </div>
+        <!-- .orderActivity -->
 
+        <!-- paymentActivity -->
         <div class="activity" id="paymentActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -160,7 +175,9 @@ require_once("../_system/config.php");
                 </a>
             </div><br><br><br><br>
         </div>
+        <!-- .paymentActivity -->
 
+        <!-- completeActivity -->
         <div class="activity" id="completeActivity">
             <div class="container">
                 <h3 class="white-text">
@@ -175,6 +192,7 @@ require_once("../_system/config.php");
                 </a><br><br>
             </div><br><br><br><br>
         </div>
+        <!-- .completeActivity -->
 
     </body>
 </html>

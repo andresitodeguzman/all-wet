@@ -37,18 +37,18 @@ class Product {
     /**
      * add
      * 
-     * @param: $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
+     * @param: Array $p_array
      * @return: Bool
      */
-    final public function add(String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
+    final public function add(Array $p_array){
         // Handle Params
-        $this->product_code = $product_code;
-        $this->product_name = $product_name;
-        $this->product_description = $product_description;
-        $this->category_id = $category_id;
-        $this->product_price = $product_price;
-        $this->product_available = $product_available;
-        $this->product_image = $product_image;
+        if($p_array['product_code']) $this->product_code = $p_array['product_code'];
+        if($p_array['product_name']) $this->product_name = $p_array['product_name'];
+        if($p_array['product_description']) $this->product_description = $p_array['product_description'];
+        if($p_array['category_id']) $this->category_id = $p_array['category_id'];
+        if($p_array['product_price']) $this->product_price = $p_array['product_price'];
+        if($p_array['product_available']) $this->product_available = $p_array['product_available'];
+        if($p_array['product_image']) $this->product_image = $p_array['product_image'];
 
         // Check if code exists
         if($this->codeExists($this->product_code)){
@@ -65,10 +65,11 @@ class Product {
 
     /**
      * codeExists
-     * @param: $product_code
-     * @return: Bool
+     * 
+     * @param: Int $product_code
+     * @return: Boolean
      */
-    final public function codeExists($product_code){
+    final public function codeExists(Int $product_code){
         // Handle Param
         $this->product_code = $product_code;
 
@@ -85,8 +86,14 @@ class Product {
             return False;
         }
     }
-  
-    final public function delete($product_id){
+
+    /**
+     * delete
+     * 
+     * @param: Int $product_id
+     * @return: Boolean
+     */
+    final public function delete(Int $product_id){
       $this->product_id = $product_id;
       
       $stmt = $this->mysqli->prepare("DELETE FROM `product` WHERE `product_id` = ?");
@@ -144,10 +151,10 @@ class Product {
     /**
      * get
      * 
-     * @param: $product_id
-     * @return: array
+     * @param: Int $product_id
+     * @return: Array
      */
-    final public function get($product_id){
+    final public function get(Int $product_id){
         // Handle Param
         $this->product_id = $product_id;
 
@@ -165,19 +172,19 @@ class Product {
     /**
      * update
      * 
-     * @param: $product_id, $product_code, $product_name, $product_description, $category_id, $product_price, $product_available, $product_image
-     * @return: Bool
+     * @param: Array $p_array
+     * @return: Boolean
      */
-    final public function update($product_id, String $product_code, String $product_name, String $product_description, $category_id, String $product_price, String $product_available, String $product_image){
+    final public function update(Array $p_array){
         // Handle Params
-        $this->product_id = $product_id;
-        $this->product_code = $product_code;
-        $this->product_name = $product_name;
-        $this->product_description = $product_description;
-        $this->category_id = $category_id;
-        $this->product_price = $product_price;
-        $this->product_available = $product_available;
-        $this->product_image = $product_image;
+        if($p_array['product_id']) $this->product_id = $p_array['product_id'];
+        if($p_array['product_code']) $this->product_code = $p_array['product_code'];
+        if($p_array['product_name']) $this->product_name = $p_array['product_name'];
+        if($p_array['product_description']) $this->product_description = $p_array['product_description'];
+        if($p_array['category_id']) $this->category_id = $p_array['category_id'];
+        if($p_array['product_price']) $this->product_price = $p_array['product_price'];
+        if($p_array['product_available']) $this->product_available = $p_array['product_available'];
+        if($p_array['product_image']) $this->product_image = $p_array['product_image'];
 
         // Check if in DB
         if($this->get($this->product_id)){
