@@ -130,13 +130,14 @@ var setProducts = ()=>{
 	$.ajax({
 		type:'GET',
 		cache: 'false',
-		url: '/api/Product/getAll.php',
+		url: '/api/Transaction/getAll.php',
 		data: {
 			a: 1
 		},
 		success: result=>{
 			try{
 				$("#transactionlist").html(" ");
+				
 				$.each(result, (index,value)=>{
 					var i = value['transaction_id'];
                     var d = value['transaction_date'];
@@ -151,8 +152,9 @@ var setProducts = ()=>{
                     var s = value['transaction_status'];
                     var lo = value['transaction_longitude'];
                     var lt = value['transaction_latitude'];
-                    var a = value['transaction_address'];
-
+					var a = value['transaction_address'];
+					var z = "kevin";
+console.log(value);
 					if(i){
 						var img = `
 						<div class="card-img">
@@ -163,11 +165,7 @@ var setProducts = ()=>{
 						var img = ``;
 					}
 
-					if(a == 'True'){
-						var a = "Yes";
-					} else {
-						var a = "Out of Stock";
-					}
+			
 
 
 					if(p){
@@ -186,7 +184,7 @@ var setProducts = ()=>{
                                     <b>${cn}</b>
                                 </h5>
                                 <p>
-                                    Stocks: ${a}<br>
+                                    Address ${a}<br>
                                     Date: ${d} ${t}
                                     Quantity: ${c}<br>
                                     Items: ${itm}<br>
