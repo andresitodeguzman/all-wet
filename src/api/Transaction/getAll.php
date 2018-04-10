@@ -14,10 +14,10 @@ require_once("../_boot.php");
 
 $obj = new AllWet\Transaction($mysqli);
 $customer = new AllWet\Customer($mysqli);
-a
+
 $data = $obj->getAll();
 
-if(empty($data)){
+if(!empty($data)){
     $t_array = array();
     
     foreach($data as $trans){
@@ -25,7 +25,6 @@ if(empty($data)){
         $transaction_date = $trans['transaction_date'];
         $transaction_time = $trans['transaction_time'];    
         $customer_id = $trans['customer_id'];
-        $transaction_items = $trans['transaction_items'];
         $transaction_count = $trans['transaction_count'];
         $transaction_price = $trans['transaction_price'];
         $transaction_payment_method = $trans['transaction_payment_method'];
@@ -48,7 +47,6 @@ if(empty($data)){
             "customer_id"=>$customer_id,
             "customer_name"=>$customer_name,
             "customer_number"=>$customer_number,
-            "transaction_items"=>$transaction_items,
             "transaction_count"=>$transaction_count,
             "transaction_price"=>$transaction_price,
             "transaction_payment_method"=>$transaction_payment_method,
