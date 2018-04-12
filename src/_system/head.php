@@ -82,13 +82,18 @@ if('serviceWorker' in navigator){
     rel="stylesheet"
     href="/assets/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <style>
+html {
+  height: 100%;
+}
 body {
-    overscroll-behavior-y: none !important;
+  overscroll-behavior-y: none !important;
+  height: 100%;
 }
 
 .cards-container {
   column-break-inside: avoid;
 }
+
 .cards-container .card {
   display: inline-block;
   overflow: visible;
@@ -102,6 +107,7 @@ body {
     column-count: 1;
   }
 }
+
 @media only screen and (min-width: 601px) {
   .cards-container {
     -webkit-column-count: 2;
@@ -109,6 +115,7 @@ body {
     column-count: 2;
   }
 }
+
 @media only screen and (min-width: 993px) {
   .cards-container {
     -webkit-column-count: 3;
@@ -116,13 +123,21 @@ body {
     column-count: 3;
   }
 }
+
+.nav-wrapper{
+  padding-right: 3%;
+}        
+.title {
+  padding-left: 1%;
+  font-size: 18pt;
+}
+
+.btn-block {
+  width:100%;
+}
 </style>
 
 <!-- Javascript -->
-<script
-    type="text/javascript"
-    src="/assets/js/vue.min.js">
-</script>
 <script
     type="text/javascript"
     src="/assets/js/jquery-3.3.1.min.js">

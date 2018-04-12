@@ -11,6 +11,6 @@ $account = new Account();
 if($account->isLoggedIn() == True){
   header("Location: ../app");
 } else {
-  header("Location: http://developer.globelabs.com.ph/dialog/oauth?app_id=$app_id");
+  header("Location: http://developer.globelabs.com.ph/dialog/oauth/$app_id");
 }
 ?>

@@ -16,18 +16,9 @@ require_once("../_system/config.php");
         <?php require_once("../_system/head.php"); ?>
         <script src="/app/_order.js"></script>
         <style>
-            html{
-                height:100%;
-            }
-            body{
-                height:100%;
-            }
             nav{
                 padding-top: 10px;
                 padding-right: 5%;
-            }
-            .btn-block {
-                width:100%;
             }
             .materialize-textarea{
                 color:white;

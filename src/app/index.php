@@ -14,12 +14,6 @@ require_once("../_system/config.php");
 	<title>All Wet</title>
 	<?php require_once("../_system/head.php"); ?>
 	<script type="text/javascript" src="/app/_app.js"></script>
-            padding-right: 3%;
-        .title {
-            padding-left: 1%;
-            font-size: 18pt;
-        }
-    </style>
 </head>
 <body class="grey lighten-4">
 
